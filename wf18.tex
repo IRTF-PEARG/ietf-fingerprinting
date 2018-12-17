@@ -19,6 +19,7 @@
     complexity,
     asymptotics,
     keys]{cryptocode}
+\usepackage{comment}
 
 \begin{document}
 
@@ -190,13 +191,28 @@ WF attacks date back to applications on SSL first inspired by Wagner and
 Schneier \cite{wagner1996analysis}, in which the authors observed that
 packet lengths reveal information about the underlying data. Subsequent attacks
 carried out by Cheng et al. \cite{cheng1998traffic},
-Sun et al. \cite{sun2002statistical}, and Hintz \cite{hintz2002fingerprinting}.
+Sun et al. \cite{sun2002statistical}, and Hintz \cite{hintz2002fingerprinting} continued to show access.
 These attacks assume \adv\ has knowledge of the target resource length(s),
-which is not always possible with techniques such as padding. Shmatikov and Wang \cite{shmatikov2006timing}
-presented a WF attack that exploits cross correlation of arrival packet counts in
-one second time windows. Bissias et al. \cite{bissias2005privacy} extend this idea to inter-packet
-times in one second windows. Liberatore and Levine \cite{liberatore2006inferring} proposed two WF attacks
-using different classification techniques. The first of which relies on the Jaccard
+which is not always possible with techniques such as padding. 
+
+Bissias et al. \cite{bissias2005privacy} use cross correlation of inter-packet
+times in one second time windows as an WF attack.
+Liberatore and Levine \cite{liberatore2006inferring} proposed two WF attacks
+using the Jaccard coefficient and the Na\"{i}ve Bayes classifier. 
+Herrmann et al. \cite{herrmann2009website} extended the work of Liberatore and Levine with a multinomial
+Naive Bayes classifier computed using three input frequency transformations.
+%(That is, during the classifier probability calculations, packet length frequencies are
+%transformed using different techniques.) This classifier assumes each packet length is
+%independent from the rest. 
+Results yielded higher accuracy than that of Liberatore and Levine.
+\marginpar{[TW] I think one of the recent neural networks papers is also on SSL/TLS? But it's actually open-world?}
+Herrmann's attack is the best in this category, but the authors assume packets which do not fill a MTU
+represent packet trailers. Therefore, uniqueness is only accurate modulo the MTU. Efficacy
+is therefore limited if endpoints pad packets to the MTU or another fixed length. \marginpar{[TW] Can you describe on which technologies this would be easy to do? I know Tor does it, but I don't know if it's easy to pad packets to MTU on, say, TLS 1.X, QUIC, HTTP/2, or HTTP/3.}
+It has been shown that these attacks are not successful on Tor. 
+
+\begin{comment}
+The first of which relies on the Jaccard
 coefficient to measure the similarity between unique packet lengths and \emph{classes}
 of unique packet lengths.\footnote{The authors assume packets which do not fill a MTU
 represent packet trailers. Therefore, uniqueness is only accurate modulo the MTU. Efficacy
@@ -210,10 +226,14 @@ Naive Bayes classifier computed using three input frequency transformations.
 (That is, during the classifier probability calculations, packet length frequencies are
 transformed using different techniques.) This classifier assumes each packet length is
 independent from the rest. Results yielded higher accuracy than that of Liberatore and Levine.
+\end{comment}
 
 \noindent
 {\bf (2) Closed-world WF on Tor}
 
+Shmatikov and Wang \cite{shmatikov2006timing}
+presented a WF attack that exploits cross correlation of arrival packet counts in
+one second time windows. 
 Lu et al. \cite{lu2010website} developed a classifier based on the Levenshtein distance between
 ingress and egress packet lengths extracted from packet sequences. Distance is computed between
 strings of ingress and egress packet lengths. The training packet sequence with the closest
