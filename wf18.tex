@@ -136,16 +136,7 @@ In the following section, we discuss this overarching problem in detail.
 % https://uwspace.uwaterloo.ca/bitstream/handle/10012/10123/Wang_Tao.pdf?sequence=3&isAllowed=y
 \section{Website Fingerprinting}
 Website Fingerprinting (WF) is a class of attacks that exploit metadata leakage to attack
-end-user privacy on the Internet. There are two types of models to analyze these attacks:
-open- and closed-world. The open world model assumes \adv\ wishes to learn whenever a victim
-client visits one of a select number of \emph{monitored pages} \cite{wang2016website}. Adversaries train
-classifiers in this model using monitored and non-monitored websites of their choosing. By
-definition, \adv\ cannot train using client-chosen pages. Clients then visit pages at will
-and \adv\ attempts to learn whenever a monitored page is visited, if any are at all. The closed
-world model assumes clients only visit pages monitored by \adv\ and is thus a substantially
-reduced threat model and not applicable to real-world scenarios.\footnote{\adv\ would need to
-monitor \emph{every} possible page of interest to each client, which is impractical.}
-
+end-user privacy on the Internet. In the WF threat model, 
 \adv\ is assumed to be a passive and local attacker. Local means that \adv\ can associate
 traffic with a given client. Examples include proxies to which clients directly connect.
 Passive means that \adv\ can only view traffic in transit. It cannot add, drop, or otherwise
@@ -160,7 +151,41 @@ are viewable by modifying client or server behavior. Specifically, this means th
 attacks such as CRIME \cite{} and TIME \cite{}, which rely on an attacker abusing TLS-layer compression
 to leak contents of an encrypted connection, are out of scope.
 
+Website Fingerprinting attacks have evolved over the years through three phases:
+(1) Closed-world WF on SSL/TLS, (2) Closed-world WF on Tor, and (3) Open-world WF on Tor. 
+
+\begin{itemize}
+\item[(1)] In the closed-world model, clients are assumed to only visit a small set of pages monitored by \adv\.
+This is less realistic but easier to analyze than the open-world model discussed below, 
+and so the earliest results achieved sucess on SSL/TLS in this model. 
+\footnote{
+For a realistic attack, \adv\ would need to
+monitor \emph{every} possible page of interest to each client, which is impractical.}
+Attacks against proxying privacy technologies such as VPNs and SSH tunneling,
+which has almost no effect on the network, falls under this category as well.
+
+\item[(2)] Tor, an anonymity network built on onion routing, is harder to attack than SSL for several reasons;
+successful results on Tor thus came later. 
+First, Tor pads all cells (Tor's application-layer datagrams) to the same constant size, 
+removing unique packet lengths as a powerful feature for the attacker.
+Second, Tor imposes random network conditions upon the client due to random selection of proxies,
+so packet sequences are less likely to be consistent. 
+
+\item[(3)] In the open-world model, \adv\ wishes to learn whenever a victim
+client visits one of a select number of \emph{monitored pages} \cite{wang2016website}. Adversaries train
+classifiers in this model using monitored and non-monitored websites of their choosing. By
+definition, \adv\ cannot train using client-chosen pages. Clients then visit pages at will
+and \adv\ attempts to learn whenever a monitored page is visited, if any are at all. 
+This is a realistic model capturing the fact that the set of pages any attacker would be interested in must
+necessarily be a small subset of the set of all pages.
+As this is a harder model to attack, successful results on this model came later. 
+\end{itemize}
+
 \subsection{Attacks}
+
+\noindent
+{\bf (1) Closed-world WF on SSL/TLS} 
+
 WF attacks date back to applications on SSL first inspired by Wagner and
 Schneier \cite{wagner1996analysis}, in which the authors observed that
 packet lengths reveal information about the underlying data. Subsequent attacks
@@ -186,12 +211,13 @@ Naive Bayes classifier computed using three input frequency transformations.
 transformed using different techniques.) This classifier assumes each packet length is
 independent from the rest. Results yielded higher accuracy than that of Liberatore and Levine.
 
+\noindent
+{\bf (2) Closed-world WF on Tor}
+
 Lu et al. \cite{lu2010website} developed a classifier based on the Levenshtein distance between
 ingress and egress packet lengths extracted from packet sequences. Distance is computed between
 strings of ingress and egress packet lengths. The training packet sequence with the closest
-distance to the testing packet sequence is deemed the match. Panchenko et al. \cite{panchenko2011website}
-were the first to use a support vector machine (SVM) classifier trained with web domain-specific
-features, such as HTML document sizes, as well as packet lengths. Dyer et al. \cite{dyer2012peek}
+distance to the testing packet sequence is deemed the match. Dyer et al. \cite{dyer2012peek}
 used a Naive Bayes classifier trained with a reduced set of features, including total
 response transmission time, length of packets (in each direction), and burst lengths.\footnote{Wang
 \cite{wang2016website} notes that measuring burst lengths in Tor is difficult given the presence of
@@ -212,6 +238,14 @@ variations are expected across repeated page loads.) Wang et al. also developed 
 with lower accuracy yet superior performance (quadratic to linear time complexity). It works by
 minimizing the sum of two costs: sequence transpositions and sequence deletions or insertions. These
 two costs are computed separately, in contrast to the first approach which computes them simultaneously.
+
+
+\noindent
+{\bf (3) Open-world WF on Tor}
+
+Panchenko et al. \cite{panchenko2011website}
+were the first to use a support vector machine (SVM) classifier trained with web domain-specific
+features, such as HTML document sizes, as well as packet lengths. 
 
 Wang et al. \cite{wang2014effective} also developed an attack using a $k$-Nearest Neighbors ($k$-NN) classifier,
 which is a supervised machine learning algorithm, targeting the open world setting. The classifier
