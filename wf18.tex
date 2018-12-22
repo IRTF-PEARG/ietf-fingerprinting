@@ -24,8 +24,8 @@
 \begin{document}
 
 \title{Website and Application Data Fingerprinting \\ Past, Present, and Future}
-\author{Christopher A. Wood}
-\authorrunning{C. Wood}
+% \author{Christopher A. Wood}
+% \authorrunning{C. Wood}
 % \institute{Wat, USA \and
 % Springer Heidelberg, Tiergartenstr. 17, 69121 Heidelberg, Germany
 % \email{lncs@springer.com}\\
@@ -83,13 +83,17 @@ for examples of these attacks.)
 
 The IETF is well on its way to protecting this metadata with protocols such as DNS-over-TLS
 and DNS-over-HTTPS \cite{rfc8484}, and work-in-progress towards encrypting
-the SNI extension \cite{ietf-tls-esni-02}. However, we argue
-that much more work is needed to protect metadata, especially in the context of web traffic.
-In this paper, we describe WF attacks in the context of IETF protocols
-such as TLS and QUIC. We survey WF attacks and highlight metadata features used to conduct
-said attacks. We also describe proposed mitigations for these attacks and discuss their
-applicability to IETF protocols. We conclude with a discussion of open problems and directions
-for future research and advocate for more work in this area.
+the TLS SNI extension \cite{ietf-tls-esni-02}. However, regardless of network-layer
+fingerprinting mitigations, application layer specifics, e.g., web page sizes and client
+request patterns, reveal a noticeable amount of information to attackers. We argue
+that much more work is needed to protect encrypted connection metadata, especially
+in the context of web traffic.
+
+In this paper, we describe WF attacks in the context of IETF protocols such as TLS and
+QUIC. We survey WF attacks and highlight metadata features and classification techniques
+used to conduct said attacks. We also describe proposed mitigations for these attacks
+and discuss their applicability to IETF protocols. We conclude with a discussion of open
+problems and directions for future research and advocate for more work in this area.
 
 % http://delivery.acm.org/10.1145/2940000/2939929/p61-alan.pdf?ip=98.234.75.172&id=2939929&acc=CHORUS&key=4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E6D218144511F3437&__acm__=1542991706_beefa03762b98f822bd5969b8cd4fbdb
 % https://ieeexplore.ieee.org/abstract/document/7448393/
@@ -120,7 +124,7 @@ DNS-over-HTTPS, and encrypted SNI. Figure \ref{fig:connections-now} shows this v
 DNS queries are encrypted to a (trusted) recursive resolver and TLS metadata such as SNI
 are encrypted in transit to the terminator. Despite the reduction in cleartext metadata
 sent over the wire, there still remains several sources of information that an adversary
-may use for malicous purpuses, including: size and timing of DNS queries and responses,
+may use for malicious purposes, including: size and timing of DNS queries and responses,
 size and timing or application traffic, and connection attempts induced while loading a
 web resource, e.g., Javascript files. So while technologies such as Encrypted SNI, DoT,
 and DoH help protect some metadata, they are not complete solutions to the larger problem.
@@ -137,7 +141,7 @@ In the following section, we discuss this overarching problem in detail.
 % https://uwspace.uwaterloo.ca/bitstream/handle/10012/10123/Wang_Tao.pdf?sequence=3&isAllowed=y
 \section{Website Fingerprinting}
 Website Fingerprinting (WF) is a class of attacks that exploit metadata leakage to attack
-end-user privacy on the Internet. In the WF threat model, 
+end-user privacy on the Internet. In the WF threat model,
 \adv\ is assumed to be a passive and local attacker. Local means that \adv\ can associate
 traffic with a given client. Examples include proxies to which clients directly connect.
 Passive means that \adv\ can only view traffic in transit. It cannot add, drop, or otherwise
@@ -153,63 +157,60 @@ attacks such as CRIME \cite{} and TIME \cite{}, which rely on an attacker abusin
 to leak contents of an encrypted connection, are out of scope.
 
 Website Fingerprinting attacks have evolved over the years through three phases:
-(1) Closed-world WF on SSL/TLS, (2) Closed-world WF on Tor, and (3) Open-world WF on Tor. 
+(1) Closed-world WF on SSL/TLS, (2) Closed-world WF on Tor, and (3) Open-world WF on Tor.
 
 \begin{itemize}
 \item[(1)] In the closed-world model, clients are assumed to only visit a small set of pages monitored by \adv\.
-This is less realistic but easier to analyze than the open-world model discussed below, 
-and so the earliest results achieved sucess on SSL/TLS in this model. 
-\footnote{
-For a realistic attack, \adv\ would need to
+This is less realistic but easier to analyze than the open-world model discussed below,
+and so the earliest results achieved success on SSL/TLS in this model.
+\footnote{For a realistic attack, \adv\ would need to
 monitor \emph{every} possible page of interest to each client, which is impractical.}
-Attacks against proxying privacy technologies such as VPNs and SSH tunneling,
+Attacks against proxy-based privacy technologies such as VPNs and SSH tunneling,
 which has almost no effect on the network, falls under this category as well.
 
 \item[(2)] Tor, an anonymity network built on onion routing, is harder to attack than SSL for several reasons;
-successful results on Tor thus came later. 
-First, Tor pads all cells (Tor's application-layer datagrams) to the same constant size, 
+successful results on Tor thus came later.
+First, Tor pads all cells (Tor's application-layer datagrams) to the same constant size,
 removing unique packet lengths as a powerful feature for the attacker.
 Second, Tor imposes random network conditions upon the client due to random selection of proxies,
-so packet sequences are less likely to be consistent. 
+so packet sequences are less likely to be consistent.
 
 \item[(3)] In the open-world model, \adv\ wishes to learn whenever a victim
 client visits one of a select number of \emph{monitored pages} \cite{wang2016website}. Adversaries train
 classifiers in this model using monitored and non-monitored websites of their choosing. By
 definition, \adv\ cannot train using client-chosen pages. Clients then visit pages at will
-and \adv\ attempts to learn whenever a monitored page is visited, if any are at all. 
+and \adv\ attempts to learn whenever a monitored page is visited, if any are at all.
 This is a realistic model capturing the fact that the set of pages any attacker would be interested in must
 necessarily be a small subset of the set of all pages.
-As this is a harder model to attack, successful results on this model came later. 
+As this is a harder model to attack, successful results on this model came later.
 \end{itemize}
 
 \subsection{Attacks}
 
-\noindent
-{\bf (1) Closed-world WF on SSL/TLS} 
-
-WF attacks date back to applications on SSL first inspired by Wagner and
+\begin{description}
+\item [(1) Closed-world WF on SSL/TLS:] WF attacks date back to applications on SSL first inspired by Wagner and
 Schneier \cite{wagner1996analysis}, in which the authors observed that
 packet lengths reveal information about the underlying data. Subsequent attacks
 carried out by Cheng et al. \cite{cheng1998traffic},
 Sun et al. \cite{sun2002statistical}, and Hintz \cite{hintz2002fingerprinting} continued to show access.
 These attacks assume \adv\ has knowledge of the target resource length(s),
-which is not always possible with techniques such as padding. 
+which is not always possible with techniques such as padding.
 
 Bissias et al. \cite{bissias2005privacy} use cross correlation of inter-packet
 times in one second time windows as an WF attack.
 Liberatore and Levine \cite{liberatore2006inferring} proposed two WF attacks
-using the Jaccard coefficient and the Na\"{i}ve Bayes classifier. 
+using the Jaccard coefficient and the Na\"{i}ve Bayes classifier.
 Herrmann et al. \cite{herrmann2009website} extended the work of Liberatore and Levine with a multinomial
 Naive Bayes classifier computed using three input frequency transformations.
 %(That is, during the classifier probability calculations, packet length frequencies are
 %transformed using different techniques.) This classifier assumes each packet length is
-%independent from the rest. 
+%independent from the rest.
 Results yielded higher accuracy than that of Liberatore and Levine.
-\marginpar{[TW] I think one of the recent neural networks papers is also on SSL/TLS? But it's actually open-world?}
 Herrmann's attack is the best in this category, but the authors assume packets which do not fill a MTU
 represent packet trailers. Therefore, uniqueness is only accurate modulo the MTU. Efficacy
-is therefore limited if endpoints pad packets to the MTU or another fixed length. \marginpar{[TW] Can you describe on which technologies this would be easy to do? I know Tor does it, but I don't know if it's easy to pad packets to MTU on, say, TLS 1.X, QUIC, HTTP/2, or HTTP/3.}
-It has been shown that these attacks are not successful on Tor. 
+is limited if endpoints pad packets to the MTU or another fixed length. Modern protocols
+such as HTTP/2, QUIC, and TLS 1.3 all provide some form of application-controlled padding.
+(Note: These attacks are not successful on Tor.)
 
 \begin{comment}
 The first of which relies on the Jaccard
@@ -228,12 +229,9 @@ transformed using different techniques.) This classifier assumes each packet len
 independent from the rest. Results yielded higher accuracy than that of Liberatore and Levine.
 \end{comment}
 
-\noindent
-{\bf (2) Closed-world WF on Tor}
-
-Shmatikov and Wang \cite{shmatikov2006timing}
+\item [(2) Closed-world WF on Tor:] Shmatikov and Wang \cite{shmatikov2006timing}
 presented a WF attack that exploits cross correlation of arrival packet counts in
-one second time windows. 
+one second time windows.
 Lu et al. \cite{lu2010website} developed a classifier based on the Levenshtein distance between
 ingress and egress packet lengths extracted from packet sequences. Distance is computed between
 strings of ingress and egress packet lengths. The training packet sequence with the closest
@@ -259,13 +257,9 @@ with lower accuracy yet superior performance (quadratic to linear time complexit
 minimizing the sum of two costs: sequence transpositions and sequence deletions or insertions. These
 two costs are computed separately, in contrast to the first approach which computes them simultaneously.
 
-
-\noindent
-{\bf (3) Open-world WF on Tor}
-
-Panchenko et al. \cite{panchenko2011website}
+\item [(3) Open-world WF on Tor:] Panchenko et al. \cite{panchenko2011website}
 were the first to use a support vector machine (SVM) classifier trained with web domain-specific
-features, such as HTML document sizes, as well as packet lengths. 
+features, such as HTML document sizes, as well as packet lengths.
 
 Wang et al. \cite{wang2014effective} also developed an attack using a $k$-Nearest Neighbors ($k$-NN) classifier,
 which is a supervised machine learning algorithm, targeting the open world setting. The classifier
@@ -289,6 +283,8 @@ used Convolutional Neural Networks (CNNs) and Deep Neural Networks (DNNs) for WF
 Sirinam et al. show the best results -- $98\%$ on Tor without recent defenses (in Section \ref{sec:defenses}) --
 while performing favorably when select defenses are used.
 
+\end{description}
+
 \subsection{Defenses} \label{sec:defenses}
 WF defenses are deterministic or randomized algorithms that take as input application data or packet sequences
 and return modified application data or packet sequences. Viable defenses seek to minimize the transformation
@@ -301,43 +297,63 @@ one which only helps mitigate specific WF attacks by transforming packets in a w
 (set of) feature(s) used by said attacks. In contrast, general defenses help mitigate a variety of attacks.
 
 Many limited defenses have been proposed. We list prominent works below.
+%
 \begin{itemize}
 \item Shmatikov and Wang \cite{shmatikov2006timing} developed adaptive padding which adds packets to mask
 inter-packet times. (This mechanism does not ever delay application data being sent, in contrast to other
 padding mechanisms such as BuFLO; see below.)
 Juarez et al. \cite{juarez2016toward} also created a WF defense based on adaptive padding called WTF-PAD.
-This variant uses an application data and ``gap'' distribution to generate padding for delays. When
-not sending application data, the gap distribution is used to generate fake sample sizes for transmission.
+This variant uses application data and ``gap'' distribution to generate padding for delays. Specifically, when
+not sending application data, the gap distribution is used to generate fake packets for transmission.
 WTF-PAD can be run by a single endpoint, though it is assumed that both client and server participate.
+As mentioned above, protocols such as HTTP/2, QUIC, and TLS 1.3 offer a mechanism by which applications can
+send padding. WTF-PAD could therefore be implemented as an extension to any of these protocols, either by
+applications supplying padding distributions or the system learning them over time.
+
 \item Wright et al. \cite{wright2009traffic} developed traffic morphing, which pads packets in such a way
 so as to make the sequence from one page have characteristics of another (non-monitored or benign) page.
+This technique requires application-specific knowledge about benign pages and is therefore best implemented
+outside of the transport layer.
+
 \item Luo et al. \cite{luo2011httpos} created HTTPS with Obfuscation (HTTPOS), which is a client-side
 mechanism for obfuscating HTTP traffic. It uses the HTTP Range method to receive resources in chunks, TCP
 MSS to limit the size of individual chunks, and advertised window size to control the flow of chunks
 in transmission.
+
 \item Panchenko et al. \cite{panchenko2011website} developed Decoy, which is a simple mechanism that loads
 a benign page alongside a real page. This seeks to mask the real page load by properties of the ``decoy'' page.
-\item The Tor project implemented HTTP pipelining \cite{perry2011experimental}, which bundles egress HTTP/1.1
-requests into batches of varying sizes, with random orders, Batching requests to mask request and response sizes
-could be made easier with HTTP/2 \cite{rfc7540}, since the protocol naturally supports multiplexing.
-\end{itemize}
+As with morphing, this defense requires application-specific knowledge about benign pages and is best
+implemented outside of the transport layer.
 
+\item The Tor project implemented HTTP pipelining \cite{perry2011experimental}, which bundles egress HTTP/1.1
+requests into batches of varying sizes with random orders. Batching requests to mask request and response sizes
+could be made easier with HTTP/2 \cite{rfc7540}, HTTP/3, and QUIC, since these protocol naturally support
+multiplexing. However, pipelining and batching may necessarily introduce latency delays that negatively impact
+the user experience.
+\end{itemize}
+%
 Several general defenses have also been proposed, including BuFLO \cite{dyer2012peek}, which pads packets to
 a fixed length of $1500$B (the normal MTU) and schedules packets for transmission at fixed period intervals
 (and sends fake data if nothing is yet available). Tamaraw \cite{wang2016website} is an improvement over BuFLO
 that uses two different fixed lengths for packet transmission, rather than one, to save on bandwidth overhead.
 Tamaraw also uses two different scheduling rates for ingress and egress packets. The authors chose to make
 the ingress packet period smaller than the egress packet period since HTTP responses are often larger in size
-and count\footnote{If HTTP Push is used.} than requests. Wang et al. also developed Supersequence \cite{wang2016website},
-which attempts to approximate a bandwidth-optimal deterministic defense. This is done by casting the problem
-as the shortest common subsequence (SCS) of the transformed packet trace. Supersequence approximates
-the solution by learning the optimal packet scheduling rate; it uses the same padding scheme as Tamaraw.
+and count\footnote{If HTTP Push is used.} than requests. While provably correct, both BuFLO and Tamaraw limit
+the rate at which clients send traffic, and requires all clients to send at a uniform rate. Both requirements
+therefore make it difficult to apply as a generic defense in IETF protocols.
+
+Wang et al. also developed Supersequence \cite{wang2016website}, which attempts to approximate a bandwidth-optimal
+deterministic defense. This is done by casting the padding and flow control problem as the shortest common
+subsequence (SCS) of the transformed packet trace. Supersequence approximates the solution by learning the optimal
+packet scheduling rate; it uses the same padding scheme as Tamaraw.
+
 Walkie-Talkie \cite{wang2015walkie} is a collection of mechanisms for WF defense. It includes running
 the client (browser) in half-duplex mode to batch requests and responses together, as well as randomly
 padding traffic so as to mimic traffic of benign websites. It assumes knowledge of traffic patterns for
 benign websites, which can be information learned over time or provided by a cooperating peer. Goldberg
 and Wang also propose a ``randomized'' variant that pads real bursts of requests and generates random
-request bursts according to a uniform distribution.
+request bursts according to a uniform distribution. The half-duplex mode could be implemented as an extension
+to a protocol such as HTTP/2, QUIC, or TLS.
 
 \section{Open Problems and Directions}
 To date, WF attacks target clients running over Tor or some other anonymizing service, meaning that WF
@@ -349,10 +365,10 @@ design trends will impact WF attacks. A non-exhaustive list of questions that wa
 are below:
 
 \begin{enumerate}
-\item How does connection coalescing affect WF attacks? Technologies such as DNS-over-HTTPS and ESNI favor
-architectures wherein a single network or connection can serve multiple origins or resources. With connection
-coalescing, traffic for multiple resources is sent on the same connection, thereby adding effects similar
-to that of the Decoy defense mechanism described in Section \ref{sec:defenses}.
+\item How does connection coalescing and consolidation affect WF attacks? Technologies such as DNS-over-HTTPS
+and ESNI favor architectures wherein a single network or connection can serve multiple origins or resources.
+With connection coalescing, traffic for multiple resources is sent on the same connection, thereby adding
+effects similar to that of the Decoy defense mechanism described in Section \ref{sec:defenses}.
 \item To what extent does protocol multiplexing increase WF attack difficulty? Using a single connection
 with multiple streams to avoid HoL blocking saves on connection startup and bandwidth costs while simultaneously
 mixing information from multiple requests and resources on the same connection.
@@ -363,7 +379,13 @@ participate in the defense, even proactively with Push, perhaps this could be im
 information? One plausible approach is to distribute client padding profiles derived from CDN knowledge
 of serviced resources.
 \item How can clients build, use, and possibly share WF defense information?
+\item How can applications package websites and subresources in such a way that limits unique information?
+For example, websites link to third party resources in an ad-hoc fashion, causing the subsequent trace of
+browser fetches to possibly uniquely identify the website.
 \end{enumerate}
+
+Research into the above questions will help the IETF community better understand the extent to which
+WF attacks are a problem for Internet users in general.
 
 \section{Acknowledgments}
 The authors thank Frederic Jacobs and Tim Taubert for feedback on an earlier draft of this document.
