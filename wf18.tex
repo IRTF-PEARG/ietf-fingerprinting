@@ -291,6 +291,18 @@ from packet interarrival times, including: median interarrival time (per burst),
 time variance, cross-burst interarrival median differences, and others. Using a CNN, results show that
 these features yield a non-negligible increase in WF attack accuracy.
 
+For all WF attacks, one limitation worth highlighting is the base rate fallacy. This can be summarized
+as follows: highly accurate classifiers with a reliable false positive rate (FPR) decrease in
+efficacy as the world size increases. Juarez et al. \cite{juarez2014critical} studied its impact by
+measuring the Bayesian detection rate (BDR) in comparison to the FPR as a function of world size.
+As the world size increases, the BDR approaches $0$ while the FPR remains stable, meaning that the probability
+of incorrect classifier results increase as well. Juarez et al. partially address the base rate fallacy
+problem by adding a confirmation step to their classifier.
+Another problem is that web content is (increasingly) dynamic. Most WF attacks, especially those in closed
+world models, assume that traces are static. However, Juarez et al. \cite{juarez2014critical} show
+this is not the case even for ``simple'' pages such as {\tt google.com}. Thus, due to the base fallacy
+rate and dynamic nature of content, classifiers require continual retraining in order to ensure accuracy.
+
 \subsection{Defenses} \label{sec:defenses}
 WF defenses are deterministic or randomized algorithms that take as input application data or packet sequences
 and return modified application data or packet sequences. Viable defenses seek to minimize the transformation
@@ -331,7 +343,7 @@ Many limited defenses have also been proposed. We list prominent works below.
 \item Shmatikov and Wang \cite{shmatikov2006timing} developed adaptive padding which adds packets to mask
 inter-packet times. (This mechanism does not ever delay application data being sent, in contrast to other
 padding mechanisms such as BuFLO; see below.)
-Juarez et al. \cite{juarez2016toward} also created a WF defense based on adaptive padding called WTF-PAD.
+Juarez et al. \cite{juarez2015wtf,juarez2016toward} also created a WF defense based on adaptive padding called WTF-PAD.
 This variant uses application data and ``gap'' distribution to generate padding for delays. Specifically, when
 not sending application data, the gap distribution is used to generate fake packets for transmission.
 WTF-PAD can be run by a single endpoint, though it is assumed that both client and server participate.
