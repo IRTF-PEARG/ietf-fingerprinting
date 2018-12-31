@@ -259,7 +259,7 @@ with lower accuracy yet superior performance (quadratic to linear time complexit
 minimizing the sum of two costs: sequence transpositions and sequence deletions or insertions. These
 two costs are computed separately, in contrast to the first approach which computes them simultaneously.
 
-\item [(3) Open-world WF on Tor:] Panchenko et al. \cite{panchenko2011website}
+\item [(3) Open-world WF on Tor and TLS:] Panchenko et al. \cite{panchenko2011website}
 were the first to use a support vector machine (SVM) classifier trained with web domain-specific
 features, such as HTML document sizes, as well as packet lengths.
 Wang et al. \cite{wang2014effective} also developed an attack using a $k$-Nearest Neighbors ($k$-NN) classifier,
@@ -268,6 +268,9 @@ extracts a large number of features from packet sequences, including raw (ingres
 packet counts, unique packet lengths, direction, burst lengths, and inter-packet times, among others.
 (There are $4226$ features in total.) The $k$-NN distance metric is computed as the sum of weighted
 feature differences.
+
+% Hayes and Danezis \cite{hayes2016k} developed $k$-fingerprinting, a WF attack built on a novel random
+% forest classifier.
 
 Kota et al. \cite{abe2016fingerprinting} were the first to use Deep Learning (DL) methods based on Stacked
 Denoising Autoencoders for WF attacks. (Autoencoders reduce feature input dimensions when stacked.)
@@ -316,7 +319,7 @@ one which only helps mitigate specific WF attacks by transforming packets in a w
 
 Several general defenses have been proposed, including BuFLO \cite{dyer2012peek}, which pads packets to
 a fixed length of $1500$B (the normal MTU) and schedules packets for transmission at fixed period intervals
-(and sends fake data if nothing is yet available). Tamaraw \cite{wang2016website} is an improvement over BuFLO
+(and sends fake data if nothing is yet available). Tamaraw \cite{wang2014comparing} is an improvement over BuFLO
 that uses two different fixed lengths for packet transmission, rather than one, to save on bandwidth overhead.
 Tamaraw also uses two different scheduling rates for ingress and egress packets. The authors chose to make
 the ingress packet period smaller than the egress packet period since HTTP responses are often larger in size
@@ -345,7 +348,7 @@ inter-packet times. (This mechanism does not ever delay application data being s
 padding mechanisms such as BuFLO; see below.)
 Juarez et al. \cite{juarez2015wtf,juarez2016toward} also created a WF defense based on adaptive padding called WTF-PAD.
 This variant uses application data and ``gap'' distribution to generate padding for delays. Specifically, when
-not sending application data, the gap distribution is used to generate fake packets for transmission.
+not sending application data, senders use the gap distribution to drive fake packet transmission.
 WTF-PAD can be run by a single endpoint, though it is assumed that both client and server participate.
 As mentioned above, protocols such as HTTP/2, QUIC, and TLS 1.3 offer a mechanism by which applications can
 send padding. WTF-PAD could therefore be implemented as an extension to any of these protocols, either by
