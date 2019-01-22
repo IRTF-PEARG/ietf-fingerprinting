@@ -68,20 +68,28 @@ properties, including: forward-secure session key secrecy, downgrade protection,
 compromise impersonation resistance, and protection of endpoint identities.
 Combined, these two protocols are set to protect a significant amount of Internet data.
 However, significant metadata leaks still exist for users of these protocols. Examples include
-plaintext TLS SNI and application-specific extensions (ALPN) and DNS queries. This information
+plaintext TLS SNI and application-specific extensions (ALPN), as well as DNS queries. This information
 can be used by a passive attacker to learn information about the contents of an otherwise
-encrypted network connection. In the context of Tor, a popular low-latency anonymity
-network, a common class of attacks that use metadata for such inference is called
-Website Fingerprinting (WF). These attacks use machine learning techniques built with
+encrypted network connection. Recently, such information has also been studied as a means
+of building unique user profiles \cite{li2018can}. It has also been used to build flow classifiers
+that aid network management \cite{foremski2014dns}.
+
+In the context of Tor, a popular low-latency anonymity network, a common class of attacks that use
+metadata for such inference is called Website Fingerprinting (WF).
+These attacks use machine learning techniques built with
 features extracted from metadata such as traffic patterns to attack web (browsing) privacy.
 Miller et al. \cite{miller2014know} show how these attacks can be applied to web browsing
 traffic protected with HTTPS to reveal private information about users.
+Pironti et al. \cite{pironti2012identifying} use similar attacks based on data sizes to
+identify individual social media clients using encrypted connections.
 Fingerprinting attacks using encrypted traffic analysis are also applicable to encrypted
 media streams, such as Netflix videos. (See work from Reed et al. \cite{reed2017identifying}
 Stikkelorum \cite{stikkelorum2017know}, and Schuster et al. \cite{schuster2017beauty}
 for examples of these attacks.) WF attacks have also been applied to other IETF
 protocols such as encrypted DNS, including dnscrypt, DNS-over-TLS,
-and DNS-over-HTTPS \cite{siby2018dns,shulman2014pretty}.
+and DNS-over-HTTPS \cite{siby2018dns,shulman2014pretty}. In the past, they have also
+been conducted remotely \cite{gong2010fingerprinting}, using buffer-based side channels
+in a victim's home router.
 
 Protocols such as DNS-over-TLS and DNS-over-HTTPS \cite{rfc8484}, and work-in-progress
 towards encrypting the TLS SNI extension \cite{ietf-tls-esni-02}, help minimize metadata sent
@@ -190,7 +198,7 @@ As this is a harder model to attack, successful results on this model came later
 \subsection{Attacks}
 
 \begin{description}
-\item [(1) Closed-world WF on SSL/TLS:] WF attacks date back to applications on SSL first inspired by Wagner and
+\item [(1) Closed-world WF on TLS:] WF attacks date back to applications on SSL first inspired by Wagner and
 Schneier \cite{wagner1996analysis}, in which the authors observed that
 packet lengths reveal information about the underlying data. Subsequent attacks
 carried out by Cheng et al. \cite{cheng1998traffic},
@@ -359,6 +367,18 @@ so as to make the sequence from one page have characteristics of another (non-mo
 This technique requires application-specific knowledge about benign pages and is therefore best implemented
 outside of the transport layer.
 
+\item Nithyanand et al. \cite{nithyanand2014glove} developed a mechanism called Glove,
+wherein traces were first clustered and then morphed (via dummy insertion, packet
+merging, splitting, and delaying) to look indistinguishable within clusters. When used
+to protect the Alexa top 500 domains, Glove performs well with respect to bandwidth
+overhead when compared to BuFLO and CS-BuFLO. Varying the cluster size can tune
+Glove's bandwidth overhead.
+
+\item Pironti et al. \cite{pironti2012identifying} developed a TLS-based fragmentation and padding
+scheme designed to hide the length of application data within a certain range with record padding.
+The mechanism works by iteratively splitting application data into variable sized segments. Applications
+can guide the range of viable lengths provided such information is available.
+
 \item Luo et al. \cite{luo2011httpos} created HTTPS with Obfuscation (HTTPOS), which is a client-side
 mechanism for obfuscating HTTP traffic. It uses the HTTP Range method to receive resources in chunks, TCP
 MSS to limit the size of individual chunks, and advertised window size to control the flow of chunks
@@ -412,9 +432,9 @@ mixing information from multiple requests and resources on the same connection.
 cooperative peer support often induce suboptimal bandwidth or latency costs. If both endpoints of a connection
 participate in the defense, even proactively with Push, perhaps this could be improved.
 \item Can connection bootstrapping techniques such as those used by ESNI be used to distribute WF defense
-information? One plausible approach is to distribute client padding profiles derived from CDN knowledge
+information? One possible approach is to distribute client padding profiles derived from CDN knowledge
 of serviced resources.
-\item How can clients build, use, and possibly share WF defense information?
+\item How can clients build, use, and possibly share WF defense information to benefit others?
 \item How can applications package websites and subresources in such a way that limits unique information?
 For example, websites link to third party resources in an ad-hoc fashion, causing the subsequent trace of
 browser fetches to possibly uniquely identify the website.
@@ -422,6 +442,20 @@ browser fetches to possibly uniquely identify the website.
 
 Research into the above questions will help the IETF community better understand the extent to which
 WF attacks are a problem for Internet users in general.
+
+It is worth mentioning that traffic-based WF attacks may not be required to achieve the desired
+goal of learning a connection's destination. Network connections by nature reveal information
+about endpoint behavior. For example, a connection to 8.8.8.8 indicates usage of Google's
+DNS service. Likewise, a connection to any address in a Cloudflare IP address block indicates
+use of a service hosted by Cloudflare. The relationship between network address
+and domains, especially when stable and unique, are a strong signal for website
+fingerprinting. Trevisan et al. \cite{trevisan2016towards} explored use of this
+signal as a reliable mechanism for website fingerprinting. They find that
+most major services (domains) have clearly associated IP address(es), though
+these addresses may change over time. Jiang et al. \cite{jiang2007lightweight}
+and Tammaro et al. \cite{tammaro2012exploiting} also previously came to the same
+conclusion. Thus, classifiers that rely solely on network addresses may be used to
+aid website fingerprinting attacks.
 
 \section{Acknowledgments}
 The authors thank Frederic Jacobs and Tim Taubert for feedback on an earlier draft of this document.
