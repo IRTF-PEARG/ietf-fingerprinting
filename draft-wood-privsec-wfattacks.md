@@ -1,23 +1,23 @@
 ---
-title: Website and Application Data Fingerprinting -- Past, Present, and Future
+title: Website and Application Data Fingerprinting
 abbrev: Website and Application Data Fingerprinting
 docname: draft-wood-privsec-wfattacks-latest
 category: exp
 
 ipr: trust200902
 area: General
-workgroup: tls
+workgroup: privsec
 keyword: Internet-Draft
 
 stand_alone: yes
 pi: [toc, sortrefs, symrefs]
 
 author:
- -
-       ins: C. A. Wood
-       name: Christopher A. Wood
-       organization: Apple, Inc.
-       email: cawood@apple.com
+-
+   ins: C. A. Wood
+   name: Christopher A. Wood
+   organization: Apple, Inc.
+   email: cawood@apple.com
 
 
 normative:
@@ -30,14 +30,21 @@ informative:
 
 --- abstract
 
-This document summarizes past research on Website Fingerprinting attacks, which
-
+The IETF is well on its way to protecting connection metadata with protocols such as DNS-over-TLS
+and DNS-over-HTTPS, and work-in-progress towards encrypting the TLS SNI. However, more
+work is needed to protect traffic metadata, especially in the context of web traffic.
+In this document, we survey Website Fingerprinting attacks, which are a class of attacks that
+use machine learning techniques to attack web privacy, and highlight metadata leaks used
+by said attacks. We also survey proposed mitigations for such leakage and discuss their
+applicability to IETF protocols such as TLS, QUIC, and HTTP. We endeavor to show that
+Website Fingerprinting attacks are a serious problem that affect all Internet users,
+and we pose open problems and directions for future research in this area.
 
 --- middle
 
 # Introduction
 
-Internet protocols such as TLS 1.3 \cite{rfc8446} and QUIC \cite{ietf-quic-transport-16}
+Internet protocols such as TLS 1.3 {{!RFC8446}} and QUIC {{!I-D.ietf-quic-transport}}
 bring substantial improvements to end-users.
 The IETF engineered these with security and privacy in mind by encrypting
 more protocol messages using modern cryptographic primitives and algorithms, and engineering
@@ -69,7 +76,7 @@ and DNS-over-HTTPS \cite{siby2018dns,shulman2014pretty}. In the past, they have 
 been conducted remotely \cite{gong2010fingerprinting}, using buffer-based side channels
 in a victim's home router.
 
-Protocols such as DNS-over-TLS and DNS-over-HTTPS \cite{rfc8484}, and work-in-progress
+Protocols such as DNS-over-TLS and DNS-over-HTTPS {{!RFC8484}}, and work-in-progress
 towards encrypting the TLS SNI extension \cite{ietf-tls-esni-02}, help minimize metadata sent
 in cleartext on the wire. However, regardless of protocol and even network-layer fingerprinting
 mitigations, application layer specifics, e.g., web page sizes and client
@@ -369,7 +376,7 @@ implemented outside of the transport layer.
 
 \item The Tor project implemented HTTP pipelining \cite{perry2011experimental}, which bundles egress HTTP/1.1
 requests into batches of varying sizes with random orders. Batching requests to mask request and response sizes
-could be made easier with HTTP/2 \cite{rfc7540}, HTTP/3, and QUIC, since these protocol naturally support
+could be made easier with HTTP/2 {{!RFC7540}}, HTTP/3, and QUIC, since these protocol naturally support
 multiplexing. However, pipelining and batching may necessarily introduce latency delays that negatively impact
 the user experience.
 
