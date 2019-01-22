@@ -1,7 +1,7 @@
 ---
 title: Website and Application Data Fingerprinting -- Past, Present, and Future
 abbrev: Website and Application Data Fingerprinting
-docname: draft-wood-privsec-wfattacks
+docname: draft-wood-privsec-wfattacks-latest
 category: exp
 
 ipr: trust200902
