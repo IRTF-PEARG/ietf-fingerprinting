@@ -1,6 +1,6 @@
 ---
-title: Website and Application Data Fingerprinting
-abbrev: Website and Application Data Fingerprinting
+title: Network-Based Website Fingerprinting
+abbrev: Network-Based Website Fingerprinting
 docname: draft-wood-privsec-wfattacks-latest
 category: exp
 
