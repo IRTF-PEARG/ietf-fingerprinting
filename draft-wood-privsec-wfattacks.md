@@ -14,10 +14,20 @@ pi: [toc, sortrefs, symrefs]
 
 author:
 -
-   ins: C. A. Wood
-   name: Christopher A. Wood
-   organization: Apple, Inc.
-   email: cawood@apple.com
+    ins: I. Goldberg
+    name: Ian Goldberg
+    organization: University of Waterloo
+    email: (iang@uwaterloo.ca
+-
+    ins: T. Wang
+    name: Tao Wang
+    organization: HK University of Science and Technology
+    email: taow@cse.ust.hk
+-
+    ins: C. A. Wood
+    name: Christopher A. Wood
+    organization: Apple, Inc.
+    email: cawood@apple.com
 
 
 normative:
@@ -616,7 +626,6 @@ In the following section, we discuss this overarching problem in detail.
 
 # Website Fingerprinting
 
-\section{Website Fingerprinting}
 Website Fingerprinting (WF) is a class of attacks that exploit metadata leakage to attack
 end-user privacy on the Internet. In the WF threat model,
 Adv is assumed to be a passive and local attacker. Local means that Adv can associate
@@ -639,8 +648,7 @@ Website Fingerprinting attacks have evolved over the years through three phases:
 1. In the closed-world model, clients are assumed to only visit a small set of pages monitored by Adv.
 This is less realistic but easier to analyze than the open-world model discussed below,
 and so the earliest results achieved success on SSL/TLS in this model.
-\footnote{For a realistic attack, Adv would need to
-monitor \emph{every} possible page of interest to each client, which is impractical.}
+(For a realistic attack, Adv would need to monitor every possible page of interest to each client, which is impractical.)
 Attacks against proxy-based privacy technologies such as VPNs and SSH tunneling,
 which has almost no effect on the network, falls under this category as well.
 
@@ -691,9 +699,9 @@ ingress and egress packet lengths extracted from packet sequences. Distance is c
 strings of ingress and egress packet lengths. The training packet sequence with the closest
 distance to the testing packet sequence is deemed the match. Dyer et al. {{dyer2012peek}}
 used a Naive Bayes classifier trained with a reduced set of features, including total
-response transmission time, length of packets (in each direction), and burst lengths.\footnote{Wang
+response transmission time, length of packets (in each direction), and burst lengths. (Wang
 {{wang2016website}} notes that measuring burst lengths in Tor is difficult given the presence of
-SENDME cells for flow control.} This approach did not yield any measurable improvements over
+SENDME cells for flow control.) This approach did not yield any measurable improvements over
 the SVM classifier from Panchenko et al. Cai et al. {{cai2012touching}} extend the work of Lu et al.
 by adding transpositions to the Levenshtein distance computation and normalizing the result,
 yielding what the authors refer to as the Optimal String Alignment Distance (OSAD).
@@ -730,7 +738,7 @@ applied DL for automated feature generation and classifier construction. Trained
 website, their system achieves 96.3% accuracy in the open world model.
 Recently, Bhat et al. {{bhat2018var}}, Oh et al. {{oh2017pfp}}, and Sirinam et al. {{sirinam2018deep}}
 used Convolutional Neural Networks (CNNs) and Deep Neural Networks (DNNs) for WF attacks. Results from
-Sirinam et al. show the best results -- 98% on Tor without recent defenses (in Section \ref{sec:defenses}) --
+Sirinam et al. show the best results -- 98% on Tor without recent defenses (in Section {{defenses}) --
 while performing favorably when select defenses are used for both open and closed world models.
 
 <!-- end of description -->
@@ -830,7 +838,7 @@ a benign page alongside a real page. This seeks to mask the real page load by pr
 As with morphing, this defense requires application-specific knowledge about benign pages and is best
 implemented outside of the transport layer.
 
-\item The Tor project implemented HTTP pipelining {{perry2011experimental}}, which bundles egress HTTP/1.1
+- The Tor project implemented HTTP pipelining {{perry2011experimental}}, which bundles egress HTTP/1.1
 requests into batches of varying sizes with random orders. Batching requests to mask request and response sizes
 could be made easier with HTTP/2 {{?RFC7540}}, HTTP/3, and QUIC, since these protocol naturally support
 multiplexing. However, pipelining and batching may necessarily introduce latency delays that negatively impact
