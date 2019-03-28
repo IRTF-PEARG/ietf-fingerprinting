@@ -587,7 +587,7 @@ request patterns, reveal a noticeable amount of information to attackers. We arg
 that much more work is needed to protect encrypted connection metadata, especially
 in the context of web traffic.
 
-In this paper, we describe WF attacks in the context of IETF protocols such as TLS and
+In this document, we describe WF attacks in the context of IETF protocols such as TLS and
 QUIC. We survey WF attacks and highlight metadata features and classification techniques
 used to conduct said attacks. We also describe proposed mitigations for these attacks
 and discuss their applicability to IETF protocols. We conclude with a discussion of open
@@ -597,9 +597,9 @@ problems and directions for future research and advocate for more work in this a
 
 In this section we review how most secure Internet connections are made today. We omit custom
 configurations such as those using VPNs and proxies since they do not represent the common case
-for most Internet users. The figure below shows the sequence of events that
-normally occur when a web client, e.g., browser, curl, etc., needs to connect to a website
-and obtain a resource. First an unencrypted DNS query is sent to an untrusted DNS recursive
+for most Internet users. The following steps briefly describe the sequence of events that
+normally occur when a web client, e.g., browser, curl, etc., connects to a website and obtains
+some resource. First an unencrypted DNS query is sent to an untrusted DNS recursive
 resolver to resolve a name to an IP address. Upon receipt, clients then open a TCP and TLS
 connection to the destination address. During this stage, metadata such as the TLS SNI and ALPN
 values are sent in cleartext. The SNI is used to denote the destination application or endpoint
@@ -612,7 +612,7 @@ protocol will be used on top of the TLS connection. Common values include "http/
 <!-- figure 1 here -->
 
 Connections look different (on the wire) with TLS 1.3, encrypted DNS via DNS-over-TLS or
-DNS-over-HTTPS, and encrypted SNI. The figure below shows this variant.
+DNS-over-HTTPS, and encrypted SNI.
 DNS queries are encrypted to a (trusted) recursive resolver and TLS metadata such as SNI
 are encrypted in transit to the terminator. Despite the reduction in cleartext metadata
 sent over the wire, there still remains several sources of information that an adversary
