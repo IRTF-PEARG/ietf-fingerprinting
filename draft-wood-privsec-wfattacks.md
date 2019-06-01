@@ -163,6 +163,12 @@ informative:
         ins: Jamie Hayes
       -
         ins: George Danezis
+  danezis2009traffic:
+    title: Traffic Analysis of the HTTP Protocol over TLS
+    seriesinfo: 2009
+    authors:
+      -
+        ins: George Danezis
   wang2014comparing:
     title: Comparing website fingerprinting attacks and defenses
     seriesinfo: "Technical Report 2013-30, CACR, 2013."
@@ -679,7 +685,12 @@ These attacks assume Adv has knowledge of the target resource length(s),
 which is not always possible with techniques such as padding.
 
 Bissias et al. {{bissias2005privacy}} use cross correlation of inter-packet
-times in one second time windows as an WF attack.
+times in one second time windows as an WF attack. Danezis {{danezis2009traffic}} model
+websites using a Hidden Markov Model (HMM) and use it, along with TLS traffic traces
+revealing only approximate lengths, to identify requested resources on a page. Their results
+vary the amount of information available to an adversary when building the HMM. Even in cases
+where resource popularity is omitted, which reflects the case where an adversary scrapes static
+websites, resource recall was high (86\%).
 Liberatore and Levine {{liberatore2006inferring}} proposed two WF attacks
 using the Jaccard coefficient and the Naive Bayes classifier.
 Herrmann et al. {{herrmann2009website}} extended the work of Liberatore and Levine with a multinomial
@@ -810,6 +821,9 @@ WTF-PAD can be run by a single endpoint, though it is assumed that both client a
 As mentioned above, protocols such as HTTP/2, QUIC, and TLS 1.3 offer a mechanism by which applications can
 send padding. WTF-PAD could therefore be implemented as an extension to any of these protocols, either by
 applications supplying padding distributions or the system learning them over time.
+
+- In the context of HTTP, Danezis {{danezis2009traffic}} proposed padding: URLs, content, and even HTML
+document structures to mask application data lengths.
 
 - Wright et al. {{wright2009traffic}} developed traffic morphing, which pads packets in such a way
 so as to make the sequence from one page have characteristics of another (non-monitored or benign) page.
