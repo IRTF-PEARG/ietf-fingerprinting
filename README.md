@@ -1,3 +1,10 @@
+# Network-Based Website Fingerprinting
+
+This is the working area for the individual Internet-Draft, "Network-Based Website Fingerprinting".
+
+* [Editor's Copy](https://chris-wood.github.io/ietf-fingerprinting/#go.draft-wood-pearg-website-fingerprinting.html)
+* [Individual Draft](https://tools.ietf.org/html/draft-wood-pearg-website-fingerprinting)
+* [Compare Editor's Copy to Individual Draft](https://chris-wood.github.io/ietf-fingerprinting/#go.draft-wood-pearg-website-fingerprinting.diff)
 
 ## Building the Draft
 
@@ -14,4 +21,4 @@ This requires that you have the necessary software installed.  See
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/git@git-crysp.uwaterloo.ca:ietf-fingerprinting/draft-wood-privsec-wfattacks.xml/blob/master/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/chris-wood/ietf-fingerprinting/blob/master/CONTRIBUTING.md).
