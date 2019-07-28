@@ -31,6 +31,22 @@ author:
 
 
 informative:
+  CRIME:
+    title: The CRIME Attack
+    target: https://www.ekoparty.org/archive/2012/CRIME_ekoparty2012.pdf
+    authors:
+      -
+        ins: Thai Duong
+      -
+        ins: Julianno Rizzo
+  TIME:
+    title: A Perfect CRIME? Only TIME Will Tell
+    seriesinfo: Black Hat Europe 2013
+    authors:
+      -
+        ins: Tal Be’ery
+      -
+        ins: Amichai Shulman
   trevisan2016towards:
     title: Towards web service classification using addresses and DNS
     seriesinfo: "Wireless Communications and Mobile Computing Conference (IWCMC), 2016 International. IEEE, 2016"
@@ -345,6 +361,24 @@ informative:
         ins: Andreas Zinnen
       -
         ins: Thomas Engel
+  panchenko2016website:
+    title: Website Fingerprinting at Internet Scale
+    target: https://www.freehaven.net/anonbib/cache/fingerprinting-ndss2016.pdf
+    authors:
+      -
+        ins: Andriy Panchenko
+      -
+        ins: Fabian Lanze
+      -
+        ins: Andreas Zinnen
+      -
+        ins: Martin Henze
+      -
+        ins: Jan Pennekamp
+      -
+        ins: Klaus Wehrle
+      -
+        ins: Thomas Engel
   cai2012touching:
     title: Touching from a distance -- Website fingerprinting attacks and defenses
     seriesinfo: "ACM conference on Computer and communications security, 2012"
@@ -556,6 +590,18 @@ informative:
     authors:
       -
         ins: Mohammad Saidur Rahman
+  imanimockingbird:
+    title: Mockingbird -- Defending Against Deep-Learning-Based Website Fingerprinting Attacks with Adversarial Traces
+    target: https://arxiv.org/pdf/1902.06626.pdf
+    authors:
+      -
+        ins: Mohsen Imani
+      -
+        ins: Mohammad Saidur Rahman
+      -
+        ins: Nate Matthews
+      -
+        ins: Matthew Wright
 
 
 --- abstract
@@ -666,7 +712,7 @@ Traffic features used for classification include properties such as packet size,
 direction, interarrival times, and burstiness, among many others {{wang2016website}}. Normally, features
 are restricted to those which are extractable as a passive eavesdropper, and not those which
 are viewable by modifying client or server behavior. Specifically, this means that
-attacks such as CRIME {{} and TIME {{}, which rely on an attacker abusing TLS-layer compression
+attacks such as CRIME {{CRIME}} and TIME {{TIME}}, which rely on an attacker abusing TLS-layer compression
 to leak contents of an encrypted connection, are out of scope.
 
 Website Fingerprinting attacks have evolved over the years through three phases:
@@ -913,6 +959,14 @@ wherein the generator produces padding (dummy packets) for input data such that 
 distinguish it from noise, or a desired burst packet sequence. Preliminary results with the GAN trained and 
 tested on defended traffic, i.e., traffic already subject to some form of WF defense, show a 9% increase in
 bandwidth and 15% decrease in attack accuracy (from 98% to 85% in a closed world setting).
+
+- Imani et al. {{imanimockingbird}} developed Mockingbird, a defense built on using generated adversarial
+examples, i.e., dummy traffic designed to disrupt classifier behavior, aimed towards model misclassification. 
+When run on classifiers trained without adversarial examples, Mockingbird reduced state-of-the-art DF attacks
+and CUMUL attacks from {{panchenko2016website}} from 98% to 3% and 92% to 31%, respectively. Conversely, classifiers
+trained and hardened with adversarial examples only reduce attack accuracy from 95% to between 25-57%, respectively.
+Classification results for half-duplex traces, i.e., those in which traffic flows in half-duplex mode, are lower.
+Mockingbird's bandwidth overhead is tunable based on parameters that control the internal traffic shaping algorithm.
 
 # Open Problems and Directions
 
