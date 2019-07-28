@@ -1,12 +1,12 @@
 ---
 title: Network-Based Website Fingerprinting
 abbrev: Network-Based Website Fingerprinting
-docname: draft-wood-privsec-wfattacks-latest
-category: exp
+docname: draft-wood-pearg-website-fingerprinting
+category: info
 
 ipr: trust200902
 area: General
-workgroup: privsec
+workgroup: pearg
 keyword: Internet-Draft
 
 stand_alone: yes
@@ -29,11 +29,6 @@ author:
     organization: Apple, Inc.
     email: cawood@apple.com
 
-
-normative:
-  RFC1035:
-  RFC2119:
-  RFC6234:
 
 informative:
   trevisan2016towards:
