@@ -267,6 +267,20 @@ with lower accuracy yet superior performance (quadratic to linear time complexit
 minimizing the sum of two costs: sequence transpositions and sequence deletions or insertions. These
 two costs are computed separately, in contrast to the first approach which computes them simultaneously.
 
+%% TODO(caw): writeme
+\begin{comment}
+Hayes et al. {{hayes2016k}} developed an attack called k-fingerprinting, which uses a k-NN classifier 
+with features ranked by random decision forests. Their feature set includes timing information, e.g.,
+statistics on packets per second, among the higher ranked features. (Higher ranked features have more
+weight in the classification phase.) Yan et al. {{yan2018feature}} used similar (manually curated)
+features with a CNN-based classifier. Time-based features were among the more effective features
+identified. Rahman et al. {{rahman2019tik}} improved time-based features by focusing on bursts,
+e.g., burst length, variance, inter-burst delay, etc., rather than more granular per-packet statistics. 
+(The latter tend to vary for inconsistencies across packet traces for websites.) This improved accuracy
+of existing Deep Learning attacks from Sirinam et al. {{sirinam2018deep}}, especially when coupled
+with packet direction information.
+\end{comment}
+
 \item [(3) Open-world WF on Tor and TLS:] Panchenko et al. \cite{panchenko2011website}
 were the first to use a support vector machine (SVM) classifier trained with web domain-specific
 features, such as HTML document sizes, as well as packet lengths.

@@ -535,6 +535,32 @@ informative:
         ins: Claudia Diaz
       -
         ins: Matthew Wrights
+  fordTLSMetadata:
+    title: Metadata Protection Considerations for TLS Present and Future
+    target: http://bford.info/pub/net/tlsmeta.pdf
+    authors:
+      -
+        ins: Brian Ford
+  rahman2019tik:
+    title: Tik-Tok -- The Utility of Packet Timing in Website Fingerprinting Attacks
+    target: https://arxiv.org/pdf/1902.06421.pdf
+    authors:
+      -
+        ins: Mohammad Saidur Rahman
+      -
+        ins: Payap Sirinam
+      -
+        ins: Nate Matthews
+      -
+        ins: Kantha Girish Gangadhara
+      -
+        ins: Matthew Wright
+  rahman18gan:
+    title: Generating Adversarial Packets for Website Fingerprinting Defense
+    target: https://www.rahmanmsaidur.com/projects/Fall_18_Generating_Adversarial_Packets.pdf
+    authors:
+      -
+        ins: Mohammad Saidur Rahman
 
 
 --- abstract
@@ -730,6 +756,17 @@ with lower accuracy yet superior performance (quadratic to linear time complexit
 minimizing the sum of two costs: sequence transpositions and sequence deletions or insertions. These
 two costs are computed separately, in contrast to the first approach which computes them simultaneously.
 
+Hayes et al. {{hayes2016k}} developed an attack called k-fingerprinting, which uses a k-NN classifier 
+with features ranked by random decision forests. Their feature set includes timing information, e.g.,
+statistics on packets per second, among the higher ranked features. (Higher ranked features have more
+weight in the classification phase.) Yan et al. {{yan2018feature}} used similar (manually curated)
+features with a CNN-based classifier. Time-based features were among the more effective features
+identified. Rahman et al. {{rahman2019tik}} improved time-based features by focusing on bursts,
+e.g., burst length, variance, inter-burst delay, etc., rather than more granular per-packet statistics. 
+(The latter tend to vary for inconsistencies across packet traces for websites.) This improved accuracy
+of existing Deep Learning attacks from Sirinam et al. {{sirinam2018deep}}, especially when coupled
+with packet direction information.
+
 3. Open-world WF on Tor and TLS: Panchenko et al. {{panchenko2011website}}
 were the first to use a support vector machine (SVM) classifier trained with web domain-specific
 features, such as HTML document sizes, as well as packet lengths.
@@ -752,8 +789,6 @@ used Convolutional Neural Networks (CNNs) and Deep Neural Networks (DNNs) for WF
 Sirinam et al. show the best results -- 98% on Tor without recent defenses (in Section {{defenses}) --
 while performing favorably when select defenses are used for both open and closed world models.
 
-<!-- end of description -->
-
 Yan et al. {{yan2018feature}} studied manual high-information feature extraction from packet traces.
 They "exhaustively" examined different levels of features, including packet, burst, TCP, port, and IP address,
 summing to 35,683 in total, and distilled them into a diverse set of uncorrelated features for eight
@@ -761,6 +796,10 @@ different communication scenarios. Rahman {{rahman2018using}} studied the utilit
 from packet interarrival times, including: median interarrival time (per burst), burst packet arrival
 time variance, cross-burst interarrival median differences, and others. Using a CNN, results show that
 these features yield a non-negligible increase in WF attack accuracy.
+
+<!-- end of description -->
+
+## Discussion
 
 For all WF attacks, one limitation worth highlighting is the base rate fallacy. This can be summarized
 as follows: highly accurate classifiers with a reliable false positive rate (FPR) decrease in
@@ -871,6 +910,15 @@ traffic flows using a combination of burst pattern morphing, constant traffic fl
 intervals, and burst padding. DynaFlow overhead is 40% less than that of Tamaraw and was shown
 to have similar benefits.
 
+- Rahman {{rahman18gan}} uses generative adversarial networks (GANs) to modify candidate burst properties 
+of packet traces, i.e., by inserting dummy packets, such that they appear indistinguishable from other traces.
+Normally, the generator component in a GAN uses random noise to produce information that matches a target 
+data distribution as classified by the discriminator component. Rahman uses a modified GAN architecture
+wherein the generator produces padding (dummy packets) for input data such that the discriminator cannot
+distinguish it from noise, or a desired burst packet sequence. Preliminary results with the GAN trained and 
+tested on defended traffic, i.e., traffic already subject to some form of WF defense, show a 9% increase in
+bandwidth and 15% decrease in attack accuracy (from 98% to 85% in a closed world setting).
+
 # Open Problems and Directions
 
 To date, WF attacks target clients running over Tor or some other anonymizing service, meaning that WF
@@ -915,6 +963,16 @@ these addresses may change over time. Jiang et al. {{jiang2007lightweight}}
 and Tammaro et al. {{tammaro2012exploiting}} also previously came to the same
 conclusion. Thus, classifiers that rely solely on network addresses may be used to
 aid website fingerprinting attacks.
+
+# Protocol Design Considerations
+
+New protocols such as TLS 1.3 and QUIC are designed with privacy-protections in mind.
+TLS 1.3, for example, has support for record-layer padding {{RFC8446}}, albeit it is
+not used widely in practice. Despite this, TLS connections still leak metadata, including
+negotiatied ciphersuites. (See {{fordTLSMetadata}} for a discussion of this issue.)
+QUIC is more aggressive in its use of encryption as both a mitigation for middlebox 
+ossificatiion and privacy enhancement. Future protocols should follow these trends when
+possible to remove unnecessary metadata from the network. 
 
 # Security Considerations
 
