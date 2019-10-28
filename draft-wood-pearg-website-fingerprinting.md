@@ -17,7 +17,7 @@ author:
     ins: I. Goldberg
     name: Ian Goldberg
     organization: University of Waterloo
-    email: (iang@uwaterloo.ca
+    email: iang@uwaterloo.ca
 -
     ins: T. Wang
     name: Tao Wang
@@ -602,6 +602,14 @@ informative:
         ins: Nate Matthews
       -
         ins: Matthew Wright
+  patil2019can:
+    title: What can you learn from an IP?
+    target: https://irtf.org/anrw/2019/anrw2019-final44-acmpaginated.pdf
+    authors:
+      -
+        ins: Simran Patil
+      -
+        ins: Nikita Borisov
 
 
 --- abstract
@@ -797,13 +805,13 @@ with lower accuracy yet superior performance (quadratic to linear time complexit
 minimizing the sum of two costs: sequence transpositions and sequence deletions or insertions. These
 two costs are computed separately, in contrast to the first approach which computes them simultaneously.
 
-Hayes et al. {{hayes2016k}} developed an attack called k-fingerprinting, which uses a k-NN classifier 
+Hayes et al. {{hayes2016k}} developed an attack called k-fingerprinting, which uses a k-NN classifier
 with features ranked by random decision forests. Their feature set includes timing information, e.g.,
 statistics on packets per second, among the higher ranked features. (Higher ranked features have more
 weight in the classification phase.) Yan et al. {{yan2018feature}} used similar (manually curated)
 features with a CNN-based classifier. Time-based features were among the more effective features
 identified. Rahman et al. {{rahman2019tik}} improved time-based features by focusing on bursts,
-e.g., burst length, variance, inter-burst delay, etc., rather than more granular per-packet statistics. 
+e.g., burst length, variance, inter-burst delay, etc., rather than more granular per-packet statistics.
 (The latter tend to vary for inconsistencies across packet traces for websites.) This improved accuracy
 of existing Deep Learning attacks from Sirinam et al. {{sirinam2018deep}}, especially when coupled
 with packet direction information.
@@ -840,7 +848,7 @@ these features yield a non-negligible increase in WF attack accuracy.
 
 <!-- end of description -->
 
-## Discussion
+# Base Rate Fallacy
 
 For all WF attacks, one limitation worth highlighting is the base rate fallacy. This can be summarized
 as follows: highly accurate classifiers with a reliable false positive rate (FPR) decrease in
@@ -951,17 +959,17 @@ traffic flows using a combination of burst pattern morphing, constant traffic fl
 intervals, and burst padding. DynaFlow overhead is 40% less than that of Tamaraw and was shown
 to have similar benefits.
 
-- Rahman {{rahman18gan}} uses generative adversarial networks (GANs) to modify candidate burst properties 
+- Rahman {{rahman18gan}} uses generative adversarial networks (GANs) to modify candidate burst properties
 of packet traces, i.e., by inserting dummy packets, such that they appear indistinguishable from other traces.
-Normally, the generator component in a GAN uses random noise to produce information that matches a target 
+Normally, the generator component in a GAN uses random noise to produce information that matches a target
 data distribution as classified by the discriminator component. Rahman uses a modified GAN architecture
 wherein the generator produces padding (dummy packets) for input data such that the discriminator cannot
-distinguish it from noise, or a desired burst packet sequence. Preliminary results with the GAN trained and 
+distinguish it from noise, or a desired burst packet sequence. Preliminary results with the GAN trained and
 tested on defended traffic, i.e., traffic already subject to some form of WF defense, show a 9% increase in
 bandwidth and 15% decrease in attack accuracy (from 98% to 85% in a closed world setting).
 
 - Imani et al. {{imanimockingbird}} developed Mockingbird, a defense built on using generated adversarial
-examples, i.e., dummy traffic designed to disrupt classifier behavior, aimed towards model misclassification. 
+examples, i.e., dummy traffic designed to disrupt classifier behavior, aimed towards model misclassification.
 When run on classifiers trained without adversarial examples, Mockingbird reduced state-of-the-art DF attacks
 and CUMUL attacks from {{panchenko2016website}} from 98% to 3% and 92% to 31%, respectively. Conversely, classifiers
 trained and hardened with adversarial examples only reduce attack accuracy from 95% to between 25-57%, respectively.
@@ -1001,17 +1009,17 @@ WF attacks are a problem for Internet users in general.
 
 It is worth mentioning that traffic-based WF attacks may not be required to achieve the desired
 goal of learning a connection's destination. Network connections by nature reveal information
-about endpoint behavior. For example, a connection to 8.8.8.8 indicates usage of Google's
-DNS service. Likewise, a connection to any address in a Cloudflare IP address block indicates
-use of a service hosted by Cloudflare. The relationship between network address
-and domains, especially when stable and unique, are a strong signal for website
-fingerprinting. Trevisan et al. {{trevisan2016towards}} explored use of this
-signal as a reliable mechanism for website fingerprinting. They find that
+about endpoint behavior. The relationship between network address and domains, especially when
+stable and unique, are a strong signal for website fingerprinting. Trevisan et al. {{trevisan2016towards}}
+explored use of this signal as a reliable mechanism for website fingerprinting. They find that
 most major services (domains) have clearly associated IP address(es), though
 these addresses may change over time. Jiang et al. {{jiang2007lightweight}}
 and Tammaro et al. {{tammaro2012exploiting}} also previously came to the same
-conclusion. Thus, classifiers that rely solely on network addresses may be used to
-aid website fingerprinting attacks.
+conclusion. Address-based website fingerprinting was also explored by Patil and
+Borisov {{patil2019can}}, wherein they showed that addresses, especially when
+grouped together as part of a single web page load, leak a substantial amount of
+information about the corresponding domain. Thus, in general, classifiers that rely
+solely on network addresses may be used to aid website fingerprinting attacks.
 
 # Protocol Design Considerations
 
@@ -1019,9 +1027,9 @@ New protocols such as TLS 1.3 and QUIC are designed with privacy-protections in 
 TLS 1.3, for example, has support for record-layer padding {{RFC8446}}, albeit it is
 not used widely in practice. Despite this, TLS connections still leak metadata, including
 negotiatied ciphersuites. (See {{fordTLSMetadata}} for a discussion of this issue.)
-QUIC is more aggressive in its use of encryption as both a mitigation for middlebox 
+QUIC is more aggressive in its use of encryption as both a mitigation for middlebox
 ossificatiion and privacy enhancement. Future protocols should follow these trends when
-possible to remove unnecessary metadata from the network. 
+possible to remove unnecessary metadata from the network.
 
 # Security Considerations
 
