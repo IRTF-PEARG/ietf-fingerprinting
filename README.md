@@ -2,9 +2,9 @@
 
 This is the working area for the individual Internet-Draft, "Network-Based Website Fingerprinting".
 
-* [Editor's Copy](https://chris-wood.github.io/ietf-fingerprinting/#go.draft-wood-pearg-website-fingerprinting.html)
-* [Individual Draft](https://tools.ietf.org/html/draft-wood-pearg-website-fingerprinting)
-* [Compare Editor's Copy to Individual Draft](https://chris-wood.github.io/ietf-fingerprinting/#go.draft-wood-pearg-website-fingerprinting.diff)
+* [Editor's Copy](https://chris-wood.github.io/ietf-fingerprinting/#go.draft-irtf-pearg-website-fingerprinting.html)
+* [Individual Draft](https://tools.ietf.org/html/draft-irtf-pearg-website-fingerprinting)
+* [Compare Editor's Copy to Individual Draft](https://chris-wood.github.io/ietf-fingerprinting/#go.draft-irtf-pearg-website-fingerprinting.diff)
 
 ## Building the Draft
 

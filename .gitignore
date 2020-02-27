@@ -9,11 +9,9 @@
 .tags
 .targets.mk
 /*-[0-9][0-9].xml
-draft-wood-pearg-website-fingerprinting.xml
 issues.json
-lib
 pulls.json
 report.xml
 venv/
 lib
-draft-wood-pearg-website-fingerprinting.xml
+draft-irtf-pearg-website-fingerprinting.xml
