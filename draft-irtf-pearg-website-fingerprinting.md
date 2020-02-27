@@ -1,7 +1,7 @@
 ---
 title: Network-Based Website Fingerprinting
 abbrev: Network-Based Website Fingerprinting
-docname: draft-irtf-pearg-website-fingerprinting
+docname: draft-irtf-pearg-website-fingerprinting-latest
 category: info
 
 ipr: trust200902
