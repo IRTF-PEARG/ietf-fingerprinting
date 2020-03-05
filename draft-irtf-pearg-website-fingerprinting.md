@@ -620,7 +620,42 @@ informative:
         ins: Simran Patil
       -
         ins: Nikita Borisov
-
+  de2019poster:
+    title: Traffic Splitting to Counter Website Fingerprinting
+    target: https://dl.acm.org/doi/10.1145/3319535.3363249
+    authors:
+      -
+        ins: Wladimir De la Cadena
+      -
+        ins: Asya Mitseva
+      -
+        ins: Jan Pennekamp
+      -
+        ins: Jens Hiller
+      -
+        ins: Fabian Lanze
+      -
+        ins: Thomas Engel
+      -
+        ins: Klaus Wehrle
+      -
+        ins: Andriy Panchenko
+    date: 2019
+  henri2020protecting:
+    title: Protecting against Website Fingerprinting with Multihoming
+    target: https://petsymposium.org/2020/files/papers/issue2/popets-2020-0019.pdf
+    authors:
+      -
+        ins: Sebastien Henri
+      -
+        ins: Gines Garcia-Aviles
+      -
+        ins: Pablo Serrano
+      -
+        ins: Albert Banchs
+      -
+        ins: Patrick Thiran
+    date: 2020
 
 --- abstract
 
@@ -874,6 +909,11 @@ rate and dynamic nature of content, classifiers require continual retraining in 
 
 # Defenses {#defenses}
 
+There are at least two types of WF defenses: traffic shaping or morphing algorithms, and traffic
+splitting algorithms. This section describes and illustrates examples of both.
+
+## Traffic Morphing
+
 WF defenses are deterministic or randomized algorithms that take as input application data or packet sequences
 and return modified application data or packet sequences. Viable defenses seek to minimize the transformation
 cost and maximum (theoretical and perfect) attacker accuracy. Naive defenses such as sending a constant stream
@@ -992,6 +1032,23 @@ packet traces (during user think time/downtime) to merge them together, creating
 multiple page loads. Attackers are unable to train classifiers for multiple contiguous traces and also unable to identify
 individual page traces from the sequence. This is in part because the GLUE used is itself a real packet trace, thwarting
 attacker classification. GLUE also adds extra noise packets ("FRONT") in the first trace as it is vulnerable otherwise.
+
+## Traffic Splitting
+
+Traffic splitting is a type of defense wherein application data is sent over multiple, disjoint network paths.
+Multipath TCP (MPTCP) is one type of "traffic splitting" protocol, wherein an endpoint may send TCP segments for a
+single connection over multiple interfaces. This is commonly done for multi-homed devices, such as mobile
+devices with cellular and WiFi or wired network connections. Traffic splitting assumes that guided traffic distribution
+reduces information available to an adversary, and thereby decreases the success probability of WF attacks. Traffic
+splitting defenses differ in the algorithm used for traffic distribution.
+
+Henri et al. {{henri2020protecting}} studied several traffic splitting algorithms, including: weighted and non-weighted
+round-robin path splitting, incoming and outgoing path split, fixed-probability splitting, and variants of per-connection
+uniform probability splitting. The best results came from a per-connection path splitting variant where the
+maximum number of packets sent on any given path was limited by a random variable chosen from a geometric distribution.
+(Once this limit was reached, a new path was selected uniformly at random.) De la Cadena et al. {{de2019poster}}
+also study path splitting algorithmss. They conclude that a weighted random path selection algorithm works best.
+(The authors do not give specifics of path weight probability derivation.)
 
 # Open Problems and Directions
 
