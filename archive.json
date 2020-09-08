@@ -1,0 +1,186 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2020-09-08T13:51:40.896775+00:00",
+  "repo": "IRTF-PEARG/ietf-fingerprinting",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 1,
+      "id": "MDU6SXNzdWU0NTExMjY2Mzk=",
+      "title": "Papers to add",
+      "url": "https://github.com/IRTF-PEARG/ietf-fingerprinting/issues/1",
+      "state": "OPEN",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "@article{hoang2019assessing,\r\n  title={Assessing the Privacy Benefits of Domain Name Encryption},\r\n  author={Hoang, Nguyen Phong and Niaki, Arian Akhavan and Borisov, Nikita and Gill, Phillipa and Polychronakis, Michalis},\r\n  journal={arXiv preprint arXiv:1911.00563},\r\n  year={2019}\r\n}\r\n@article{juarez2019design,\r\n  title={Design and Evaluation of Website Fingerprinting Techniques},\r\n  author={Juarez Miro, M},\r\n  year={2019}\r\n}\r\n@inproceedings{anderson2017machine,\r\n  title={Machine learning for encrypted malware traffic classification: accounting for noisy labels and non-stationarity},\r\n  author={Anderson, Blake and McGrew, David},\r\n  booktitle={Proceedings of the 23rd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining},\r\n  pages={1723--1732},\r\n  year={2017}\r\n}\r\n@inproceedings{anderson2019limitless,\r\n  title={Limitless HTTP in an HTTPS World: Inferring the Semantics of the HTTPS Protocol without Decryption},\r\n  author={Anderson, Blake and Chi, Andrew and Dunlop, Scott and McGrew, David},\r\n  booktitle={Proceedings of the Ninth ACM Conference on Data and Application Security and Privacy},\r\n  pages={267--278},\r\n  year={2019}\r\n}\r\n@inproceedings{xu2018multi,\r\n  title={A multi-tab website fingerprinting attack},\r\n  author={Xu, Yixiao and Wang, Tao and Li, Qi and Gong, Qingyuan and Chen, Yang and Jiang, Yong},\r\n  booktitle={Proceedings of the 34th Annual Computer Security Applications Conference},\r\n  pages={327--341},\r\n  year={2018}\r\n}\r\n@inproceedings{panchenko2016website,\r\n  title={Website Fingerprinting at Internet Scale.},\r\n  author={Panchenko, Andriy and Lanze, Fabian and Pennekamp, Jan and Engel, Thomas and Zinnen, Andreas and Henze, Martin and Wehrle, Klaus},\r\n  booktitle={NDSS},\r\n  year={2016}\r\n} \r\n@article{siby2019encrypted,\r\n  title={Encrypted DNS--> Privacy? A Traffic Analysis Perspective},\r\n  author={Siby, Sandra and Juarez, Marc and Diaz, Claudia and Vallina-Rodriguez, Narseo and Troncoso, Carmela},\r\n  journal={arXiv preprint arXiv:1906.09682},\r\n  year={2019}\r\n}\r\n@article{qasem2019finding,\r\n  title={Finding a Needle in a Haystack: The Traffic Analysis Version},\r\n  author={Qasem, Abdullah and Zhioua, Sami and Makhlouf, Karima},\r\n  journal={Proceedings on Privacy Enhancing Technologies},\r\n  volume={2019},\r\n  number={2},\r\n  pages={270--290},\r\n  year={2019},\r\n  publisher={Sciendo}\r\n}\r\n@inproceedings{nasr2018deepcorr,\r\n  title={Deepcorr: Strong flow correlation attacks on tor using deep learning},\r\n  author={Nasr, Milad and Bahramali, Alireza and Houmansadr, Amir},\r\n  booktitle={Proceedings of the 2018 ACM SIGSAC Conference on Computer and Communications Security},\r\n  pages={1962--1976},\r\n  year={2018}\r\n}\r\n@article{attarian2019adawfpa,\r\n  title={AdaWFPA: Adaptive Online Website Fingerprinting Attack for Tor Anonymous Network: A Stream-wise Paradigm},\r\n  author={Attarian, Reyhane and Abdi, Lida and Hashemi, Sattar},\r\n  journal={Computer Communications},\r\n  volume={148},\r\n  pages={74--85},\r\n  year={2019},\r\n  publisher={Elsevier}\r\n}\r\n@inproceedings{chen2019rethinking,\r\n  title={Rethinking Encrypted Traffic Classification: A Multi-Attribute Associated Fingerprint Approach},\r\n  author={Chen, Yige and Zang, Tianning and Zhang, Yongzheng and Zhouz, Yuan and Wang, Yipeng},\r\n  booktitle={2019 IEEE 27th International Conference on Network Protocols (ICNP)},\r\n  pages={1--11},\r\n  year={2019},\r\n  organization={IEEE}\r\n}\r\n@article{wang2018optimizing,\r\n  title={Optimizing Precision for Open-World Website Fingerprinting},\r\n  author={Wang, Tao},\r\n  journal={arXiv preprint arXiv:1802.05409},\r\n  year={2018}\r\n}\r\n@article{pulls2020website,\r\n  title={Website Fingerprinting with Website Oracles},\r\n  author={Pulls, Tobias and Dahlberg, Rasmus},\r\n  journal={Proceedings on Privacy Enhancing Technologies},\r\n  volume={2020},\r\n  number={1},\r\n  pages={235--255},\r\n  year={2020},\r\n  publisher={Sciendo}\r\n}\r\n@inproceedings{de2019poster,\r\n  title={POSTER: Traffic Splitting to Counter Website Fingerprinting},\r\n  author={De la Cadena, Wladimir and Mitseva, Asya and Pennekamp, Jan and Hiller, Jens and Lanze, Fabian and Engel, Thomas and Wehrle, Klaus and Panchenko, Andriy},\r\n  booktitle={Proceedings of the 2019 ACM SIGSAC Conference on Computer and Communications Security},\r\n  pages={2533--2535},\r\n  year={2019}\r\n}\r\n@article{oh2019p1,\r\n  title={p1-FP: Extraction, Classification, and Prediction of Website Fingerprints with Deep Learning},\r\n  author={Oh, Se Eun and Sunkam, Saikrishna and Hopper, Nicholas},\r\n  journal={Proceedings on Privacy Enhancing Technologies},\r\n  volume={2019},\r\n  number={3},\r\n  pages={191--209},\r\n  year={2019},\r\n  publisher={Sciendo}\r\n}\r\n@inproceedings{chan2018website,\r\n  title={Website fingerprinting attack mitigation using traffic morphing},\r\n  author={Chan-Tin, Eric and Kim, Taejoon and Kim, Jinoh},\r\n  booktitle={2018 IEEE 38th International Conference on Distributed Computing Systems (ICDCS)},\r\n  pages={1575--1578},\r\n  year={2018},\r\n  organization={IEEE}\r\n}\r\n@article{imani2019adv,\r\n  title={Adv-DWF: Defending Against Deep-Learning-Based Website Fingerprinting Attacks with Adversarial Traces},\r\n  author={Imani, Mohsen and Rahman, Mohammad Saidur and Mathews, Nate and Joshi, Aneesh Yogesh and Wright, Matthew},\r\n  journal={arXiv preprint arXiv:1902.06626},\r\n  year={2019}\r\n}\r\n@article{linmeasuring,\r\n  title={Measuring the Impact of HTTP/2 and Server Push on Web Fingerprinting},\r\n  author={Lin, Weiran and Reddy, Sanjeev and Borisov, Nikita}\r\n}\r\n@inproceedings{raymond00,\r\n  title = {{Traffic Analysis: Protocols, Attacks, Design Issues, and Open Problems}}, \r\n  author = {Jean-Fran\\c{c}ois Raymond}, \r\n  booktitle = {Proceedings of Designing Privacy Enhancing Technologies: Workshop on Design\r\n        Issues in Anonymity and Unobservability}, \r\n  year = {2000}, \r\n  month = {July}, \r\n  pages = {10--29}, \r\n  editor = {H. Federrath}, \r\n  publisher = {Springer-Verlag, LNCS 2009}, \r\n  www_important = {1}, \r\n  www_tags = {selected}, \r\n  www_section = {Traffic analysis}, \r\n  www_pdf_url = {http://www.geocities.com/j_f_raymond/mesarticles/berkeley_ws_lncs.pdf}, \r\n  www_ps_url = {http://www.geocities.com/j_f_raymond/mesarticles/berkeley_ws_lncs.ps}, \r\n}\r\n@inproceedings{TrafHTTP,\r\n  title = {Statistical Identification of Encrypted Web Browsing Traffic}, \r\n  author = {Qixiang Sun and Daniel R. Simon and Yi-Min Wang and Wilf Russell and Venkata N.\r\n        Padmanabhan and Lili Qiu}, \r\n  booktitle = {Proceedings of the 2002 IEEE Symposium on Security and Privacy}, \r\n  year = {2002}, \r\n  month = {May}, \r\n  location = {Berkeley, California}, \r\n  www_tags = {selected}, \r\n  www_pdf_url = {ftp://ftp.research.microsoft.com/pub/tr/tr-2002-23.pdf}, \r\n  www_section = {Traffic analysis}, \r\n}\r\n@inproceedings{newman:pet2003,\r\n  title = {Metrics for Traffic Analysis Prevention}, \r\n  author = {Richard E. Newman and Ira S. Moskowitz and Paul Syverson and Andrei Serjantov}, \r\n  booktitle = {Proceedings of Privacy Enhancing Technologies workshop (PET 2003)}, \r\n  year = {2003}, \r\n  month = {March}, \r\n  pages = {48--65}, \r\n  editor = {Roger Dingledine}, \r\n  publisher = {Springer-Verlag, LNCS 2760}, \r\n  www_tags = {selected}, \r\n  www_section = {Traffic analysis}, \r\n  www_ps_url = {http://www.cise.ufl.edu/~nemo/papers/PET2003.ps}, \r\n}\r\n@article{shsm03,\r\n  title = {Using Caching for Browsing Anonymity}, \r\n  author = {Anna Shubina and Sean Smith}, \r\n  journal = {ACM SIGEcom Exchanges}, \r\n  volume = {4}, \r\n  number = {2}, \r\n  year = {2003}, \r\n  month = {September}, \r\n  www_tags = {selected}, \r\n  www_pdf_url = {http://www.acm.org/sigs/sigecom/exchanges/volume_4_(03)/4.2-Shubina.pdf}, \r\n  www_section = {Anonymous communication}, \r\n}\r\n@inproceedings{e2e-traffic,\r\n  title = {Practical Traffic Analysis: Extending and Resisting Statistical Disclosure}, \r\n  author = {Nick Mathewson and Roger Dingledine}, \r\n  booktitle = {Proceedings of Privacy Enhancing Technologies workshop (PET 2004)}, \r\n  volume = {3424}, \r\n  year = {2004}, \r\n  month = {May}, \r\n  pages = {17--34}, \r\n  series = {LNCS}, \r\n  www_important = {1}, \r\n  www_tags = {selected}, \r\n  www_section = {Traffic analysis}, \r\n  www_pdf_url = {http://freehaven.net/doc/e2e-traffic/e2e-traffic.pdf}, \r\n}\r\n@inproceedings{torta05,\r\n  title = {Low-Cost Traffic Analysis of {Tor}}, \r\n  author = {Steven J. Murdoch and George Danezis}, \r\n  booktitle = {Proceedings of the 2005 IEEE Symposium on Security and Privacy}, \r\n  year = {2005}, \r\n  month = {May}, \r\n  publisher = {IEEE CS}, \r\n  www_important = {1}, \r\n  www_tags = {selected}, \r\n  www_pdf_url = {http://www.cl.cam.ac.uk/users/sjm217/papers/oakland05torta.pdf}, \r\n  www_section = {Traffic analysis}, \r\n}\r\n@article{WrightMM06,\r\n  title = {On Inferring Application Protocol Behaviors in Encrypted Network Traffic}, \r\n  author = {Charles V. Wright and Fabian Monrose and Gerald M. Masson}, \r\n  journal = {Journal of Machine Learning Research}, \r\n  volume = {7}, \r\n  year = {2006}, \r\n  address = {Cambridge, MA, USA}, \r\n  pages = {2745--2769}, \r\n  publisher = {MIT Press}, \r\n  www_tags = {selected}, \r\n  issn = {1533-7928}, \r\n  www_section = {Traffic analysis}, \r\n  www_pdf_url = {http://jmlr.csail.mit.edu/papers/volume7/wright06a/wright06a.pdf}, \r\n}\r\n@inproceedings{murdoch-pet2007,\r\n  title = {Sampled Traffic Analysis by {I}nternet-Exchange-Level Adversaries}, \r\n  author = {Steven J. Murdoch and Piotr Zieli{\\'n}ski}, \r\n  booktitle = {Proceedings of the Seventh Workshop on Privacy Enhancing Technologies (PET\r\n        2007)}, \r\n  year = {2007}, \r\n  month = {June}, \r\n  location = {Ottawa, Canada}, \r\n  editor = {Nikita Borisov and Philippe Golle}, \r\n  publisher = {Springer}, \r\n  www_important = {1}, \r\n  www_tags = {selected}, \r\n  bookurl = {http://petworkshop.org/2007/}, \r\n  www_pdf_url = {http://petworkshop.org/2007/papers/PET2007_preproc_Sampled_traffic.pdf}, \r\n  www_remarks = {Examines efficacy of traffic analysis against a low-latency anonymity\r\n        network by an adversary who controls Internet exchanges, and who can only sample\r\n        a fraction of traffic.}, \r\n  www_section = {Traffic analysis}, \r\n}\r\n@inproceedings{diaz-wpes2007,\r\n  title = {Does additional information always reduce anonymity?}, \r\n  author = {Claudia Diaz and Carmela Troncoso and George Danezis}, \r\n  booktitle = {Proceedings of the Workshop on Privacy in the Electronic Society 2007}, \r\n  volume = {}, \r\n  number = {}, \r\n  year = {2007}, \r\n  month = {October}, \r\n  location = {Alexandria,VA,USA}, \r\n  pages = {72--75}, \r\n  editor = {Ting Yu}, \r\n  publisher = {ACM}, \r\n  series = {}, \r\n  www_tags = {selected}, \r\n  www_pdf_url = {https://www.cosic.esat.kuleuven.be/publications/article-925.pdf}, \r\n  www_section = {Traffic analysis}, \r\n}\r\n@inproceedings{danezis-pet2008,\r\n  title = {Bridging and Fingerprinting: Epistemic Attacks on Route Selection}, \r\n  author = {George Danezis and Paul Syverson}, \r\n  booktitle = {Proceedings of the Eighth International Symposium on Privacy Enhancing\r\n        Technologies (PETS 2008)}, \r\n  year = {2008}, \r\n  month = {July}, \r\n  location = {Leuven, Belgium}, \r\n  pages = {133--150}, \r\n  editor = {Nikita Borisov and Ian Goldberg}, \r\n  publisher = {Springer}, \r\n  www_important = {1}, \r\n  www_tags = {selected}, \r\n  bookurl = {http://petsymposium.org/2008/}, \r\n  www_pdf_url = {http://research.microsoft.com/~gdane/papers/bridge.pdf}, \r\n  www_section = {Traffic analysis}, \r\n}\r\n@inproceedings{morphing09,\r\n  title = {Traffic Morphing: An efficient defense against statistical traffic analysis}, \r\n  author = {Charles Wright and Scott Coull and Fabian Monrose}, \r\n  booktitle = {Proceedings of the Network and Distributed Security Symposium - {NDSS} '09}, \r\n  year = {2009}, \r\n  month = {February}, \r\n  publisher = {IEEE}, \r\n  www_tags = {selected}, \r\n  www_pdf_url = {http://freehaven.net/anonbib/papers/morphing09.pdf}, \r\n  www_section = {Traffic analysis}, \r\n}\r\n@inproceedings{DBLP:conf/pet/RaghavanKSW09,\r\n  title = {Enlisting ISPs to Improve Online Privacy: IP Address Mixing by Default}, \r\n  author = {Barath Raghavan and Tadayoshi Kohno and Alex C. Snoeren and David Wetherall}, \r\n  booktitle = {Proceedings of Privacy Enhancing Technologies, 9th International Symposium\r\n        (PETS 2009)}, \r\n  volume = {5672}, \r\n  year = {2009}, \r\n  month = {August}, \r\n  pages = {143--163}, \r\n  editor = {Ian Goldberg and Mikhail J. Atallah}, \r\n  publisher = {Springer}, \r\n  series = {Lecture Notes in Computer Science}, \r\n  isbn = {978-3-642-03167-0}, \r\n  www_section = {Anonymous communication}, \r\n  www_pdf_url = {http://www.cs.williams.edu/~barath/papers/ahp-pets09.pdf}, \r\n  www_tags = {selected}, \r\n}\r\n@article{tissec-latency-leak,\r\n  title = {How Much Anonymity does Network Latency Leak?}, \r\n  author = {Nicholas Hopper and Eugene Y. Vasserman and Eric Chan-Tin}, \r\n  journal = {ACM Transactions on Information and System Security}, \r\n  volume = {13}, \r\n  number = {2}, \r\n  year = {2010}, \r\n  month = {February}, \r\n  www_important = {1}, \r\n  www_tags = {selected}, \r\n  www_pdf_url = {http://www.cs.umn.edu/~hopper/tissec-latency-leak.pdf}, \r\n  www_section = {Traffic analysis}, \r\n}\r\n@inproceedings{ccs2011-stealthy,\r\n  title = {Stealthy Traffic Analysis of Low-Latency Anonymous Communication Using\r\n        Throughput Fingerprinting}, \r\n  author = {Prateek Mittal and Ahmed Khurshid and Joshua Juen and Matthew Caesar and Nikita\r\n        Borisov}, \r\n  booktitle = {Proceedings of the 18th ACM conference on Computer and Communications\r\n        Security (CCS 2011)}, \r\n  year = {2011}, \r\n  month = {October}, \r\n  www_tags = {selected}, \r\n  www_pdf_url = {https://netfiles.uiuc.edu/mittal2/www/throughput-fingerprinting-ccs11.pdf},\r\n  www_section = {Anonymous communication}, \r\n}\r\n@inproceedings{tcp-tor-pets12,\r\n  title = {{Spying in the Dark: TCP and Tor Traffic Analysis}}, \r\n  author = {Yossi Gilad and Amir Herzberg}, \r\n  booktitle = {Proceedings of the 12th Privacy Enhancing Technologies Symposium (PETS\r\n        2012)}, \r\n  year = {2012}, \r\n  month = {July}, \r\n  publisher = {Springer}, \r\n  www_tags = {selected}, \r\n  www_pdf_url = {http://freehaven.net/anonbib/papers/pets2012/paper_57.pdf}, \r\n  www_section = {Traffic analysis}, \r\n}\r\n@inproceedings{traffic-padding-pets12,\r\n  title = {k-Indistinguishable Traffic Padding in Web Applications}, \r\n  author = {Wen Ming Liu and Lingyu Wang and Kui Ren and Pengsu Cheng and Mourad Debbabi}, \r\n  booktitle = {Proceedings of the 12th Privacy Enhancing Technologies Symposium (PETS\r\n        2012)}, \r\n  year = {2012}, \r\n  month = {July}, \r\n  publisher = {Springer}, \r\n  www_tags = {selected}, \r\n  www_pdf_url = {http://freehaven.net/anonbib/papers/pets2012/paper_46.pdf}, \r\n  www_section = {Traffic analysis}, \r\n}\r\n@inproceedings{pets13-splitting,\r\n  title = {The Path Less Travelled: Overcoming Tor's Bottlenecks with Traffic Splitting}, \r\n  author = {Mashael Alsabah and Kevin Bauer and Tariq Elahi and Ian Goldberg}, \r\n  booktitle = {Proceedings of the 13th Privacy Enhancing Technologies Symposium (PETS\r\n        2013)}, \r\n  year = {2013}, \r\n  month = {July}, \r\n  www_pdf_url = {http://www.cypherpunks.ca/~iang/pubs/conflux-pets.pdf}, \r\n  www_tags = {selected}, \r\n  www_section = {Anonymous communication,Tor Performance}, \r\n}\r\n@article{websitefingerprinting-pets2016,\r\n  title = {On Realistically Attacking Tor with Website Fingerprinting}, \r\n  author = {Tao Wang and Ian Goldberg}, \r\n  journal = {Proceedings on Privacy Enhancing Technologies}, \r\n  volume = {2016}, \r\n  number = {4}, \r\n  year = {2016}, \r\n  month = {October}, \r\n  www_tags = {selected}, \r\n  www_pdf_url = {https://petsymposium.org/2016/files/papers/On_Realistically_Attacking_Tor_with_Website_Fingerprinting.pdf},\r\n  www_section = {Traffic analysis}, \r\n}\r\n@inproceedings{dnstor-ndss2017,\r\n  title = {The Effect of DNS on Tor's Anonymity}, \r\n  author = {Benjamin Greschbach and Tobias Pulls and Laura M. Roberts and Philipp Winter\r\n        and Nick Feamster}, \r\n  booktitle = {Proceedings of the Network and Distributed Security Symposium - {NDSS} '17}, \r\n  year = {2017}, \r\n  month = {February}, \r\n  publisher = {Internet Society}, \r\n  www_tags = {selected}, \r\n  www_pdf_url = {https://www.internetsociety.org/sites/default/files/ndss2017_06B-2_Greschbach_paper.pdf},\r\n  www_section = {Traffic analysis}, \r\n}\r\n@article{tagit-pets2017,\r\n  title = {TagIt: Tagging Network Flows using Blind Fingerprints}, \r\n  author = {Fatemeh Rezaei and Amir Houmansadr}, \r\n  journal = {Proceedings on Privacy Enhancing Technologies}, \r\n  volume = {2017}, \r\n  number = {4}, \r\n  year = {2017}, \r\n  month = {October}, \r\n  www_tags = {selected}, \r\n  www_pdf_url = {https://petsymposium.org/2017/papers/issue4/paper66-2017-4-source.pdf}, \r\n  www_section = {Traffic analysis}, \r\n}\r\n@inproceedings{leakage-ccs2018,\r\n  title = {Measuring Information Leakage in Website Fingerprinting Attacks and Defenses}, \r\n  author = {Shuai Li and Huajun Guo and Nicholas Hopper}, \r\n  booktitle = {Proceedings of the 25th ACM Conference on Computer and Communications\r\n        Security (CCS '18)}, \r\n  year = {2018}, \r\n  month = {November}, \r\n  www_tags = {selected}, \r\n  www_pdf_url = {https://www-users.cs.umn.edu/~hoppernj/wefde-ccs2018.pdf}, \r\n  www_section = {Traffic analysis}, \r\n}\r\n@inproceedings{houser2019investigation,\r\n  title={An investigation on information leakage of DNS over TLS},\r\n  author={Houser, Rebekah and Li, Zhou and Cotton, Chase and Wang, Haining},\r\n  booktitle={Proceedings of the 15th International Conference on Emerging Networking Experiments And Technologies},\r\n  pages={123--137},\r\n  year={2019}\r\n}",
+      "createdAt": "2019-06-01T21:29:40Z",
+      "updatedAt": "2020-05-24T13:31:02Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 2,
+      "id": "MDU6SXNzdWU1NTIzOTMyNDI=",
+      "title": "Discuss possible generic defenses",
+      "url": "https://github.com/IRTF-PEARG/ietf-fingerprinting/issues/2",
+      "state": "OPEN",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "From @sftcd,  \r\n\r\n> 2. A suggested addition to section 7: What mechanisms\r\n> to counter WF might make sense for generic libraries\r\n> (e.g. TLS/HTTP libraries) and HTTP servers? By \"generic\"\r\n> here I mean code that doesn't know anything about the\r\n> resources will be served/consumed. And in saying\r\n> \"mechanisms\" I include APIs and controls that turn on\r\n> or off or configure protocol-level anti-WF schemes.",
+      "createdAt": "2020-01-20T16:13:13Z",
+      "updatedAt": "2020-01-20T16:13:42Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 3,
+      "id": "MDU6SXNzdWU1NTIzOTQ0MTY=",
+      "title": "Consider defenses for small deployments",
+      "url": "https://github.com/IRTF-PEARG/ietf-fingerprinting/issues/3",
+      "state": "OPEN",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "From @sftcd,\r\n\r\n> 3. Another suggestion for section 7: How might one\r\n> provide defenses that are effective for small hosters\r\n> (as opposed to mega-scale CDNs)? (Note that I didn't\r\n> follow the references yet, so that could already be\r\n> covered by some of the cited work - just ignore me\r\n> if so:-)",
+      "createdAt": "2020-01-20T16:15:14Z",
+      "updatedAt": "2020-01-20T16:15:14Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 4,
+      "id": "MDU6SXNzdWU1NTI5ODk2MTM=",
+      "title": "Add reference to iptfs",
+      "url": "https://github.com/IRTF-PEARG/ietf-fingerprinting/issues/4",
+      "state": "CLOSED",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "See https://datatracker.ietf.org/doc/draft-ietf-ipsecme-iptfs/.",
+      "createdAt": "2020-01-21T16:31:31Z",
+      "updatedAt": "2020-02-27T03:08:43Z",
+      "closedAt": "2020-02-27T03:08:43Z",
+      "comments": [
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Meanwhile at IEEE: P802.1AEdk MAC Privacy protection - PAR Approved by the SASB\r\n\r\nIt's following the IPTFS stuff (like they're aiming for the same category of increased privacy protection).\r\n\r\nhttps://mailarchive.ietf.org/arch/msg/pearg/wdP55pZjoY5t9beW_de6zkp1_Jo",
+          "createdAt": "2020-02-20T23:47:02Z",
+          "updatedAt": "2020-02-20T23:47:02Z"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "id": "MDU6SXNzdWU1NjExODI0MDQ=",
+      "title": "Add reference to GLUE and FRONT",
+      "url": "https://github.com/IRTF-PEARG/ietf-fingerprinting/issues/5",
+      "state": "CLOSED",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "```\r\nGLUE is a lightweight defense that does not delay any packets, \r\nminimizing its effect on user experience. Instead of adding packets \r\nduring a packet trace in order to obfuscate which page it came from, \r\nGLUE adds packets between packet traces (during user think \r\ntime/downtime) to merge them together, creating a seamless sequence of \r\npackets covering multiple page loads. Attackers are unable to train \r\nclassifiers for multiple contiguous traces and also unable to identify \r\nindividual page traces from the sequence. This is in part because the \r\nGLUE used is itself a real packet trace, thwarting attacker \r\nclassification. GLUE also adds extra noise packets (\"FRONT\") in the \r\nfirst trace as it is vulnerable otherwise.\r\n```\r\n\r\nhttps://www.ieee-security.org/TC/SP2019/posters/hotcrp_sp19posters-final6.pdf\r\nhttps://www.usenix.org/system/files/sec20summer_gong_prepub.pdf",
+      "createdAt": "2020-02-06T18:11:13Z",
+      "updatedAt": "2020-02-27T03:08:43Z",
+      "closedAt": "2020-02-27T03:08:43Z",
+      "comments": []
+    },
+    {
+      "number": 6,
+      "id": "MDU6SXNzdWU1NzU1MDUxODQ=",
+      "title": "Better document adversary assumptions",
+      "url": "https://github.com/IRTF-PEARG/ietf-fingerprinting/issues/6",
+      "state": "OPEN",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "- Ability to detect start of page load\r\n- Replicate client conditions for training classifiers\r\n- Separate foreground (target) and background traffic from a device",
+      "createdAt": "2020-03-04T15:31:43Z",
+      "updatedAt": "2020-03-04T15:31:43Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 7,
+      "id": "MDU6SXNzdWU1NzcxMjc3NDg=",
+      "title": "Links to consider",
+      "url": "https://github.com/IRTF-PEARG/ietf-fingerprinting/issues/7",
+      "state": "OPEN",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "- https://blog.squarelemon.com/tls-fingerprinting/\r\n- https://blog.torproject.org/new-low-cost-traffic-analysis-attacks-mitigations\r\n- https://www.cs.kau.se/pulls/hot/thebasketcase-ape/\r\n- https://ieeexplore.ieee.org/abstract/document/9142795\r\n",
+      "createdAt": "2020-03-06T19:25:34Z",
+      "updatedAt": "2020-07-20T21:39:22Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 8,
+      "id": "MDU6SXNzdWU2MjEwMjA3NTI=",
+      "title": "Add \"High Precision Open-World Website Fingerprinting\" reference",
+      "url": "https://github.com/IRTF-PEARG/ietf-fingerprinting/issues/8",
+      "state": "OPEN",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "\"This paper explicitly incorporates base rate in the calculation of precision and manages to achieves high precision at a sacrifice of recall at low base rates,\" or something to that effect. ",
+      "createdAt": "2020-05-19T14:24:59Z",
+      "updatedAt": "2020-05-19T14:24:59Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
+  "pulls": []
+}
