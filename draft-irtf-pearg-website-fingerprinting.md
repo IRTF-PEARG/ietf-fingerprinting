@@ -14,20 +14,20 @@ pi: [toc, sortrefs, symrefs]
 
 author:
 -
-    ins: I. Goldberg
-    name: Ian Goldberg
-    organization: University of Waterloo
-    email: iang@uwaterloo.ca
+  ins: I. Goldberg
+  name: Ian Goldberg
+  organization: University of Waterloo
+  email: iang@uwaterloo.ca
 -
-    ins: T. Wang
-    name: Tao Wang
-    organization: HK University of Science and Technology
-    email: taow@cse.ust.hk
+  ins: T. Wang
+  name: Tao Wang
+  organization: HK University of Science and Technology
+  email: taow@cse.ust.hk
 -
-    ins: C. A. Wood
-    name: Christopher A. Wood
-    organization: Apple, Inc.
-    email: cawood@apple.com
+  ins: C. A. Wood
+  name: Christopher A. Wood
+  organization: Cloudflare
+  email: caw@heapingbits.net
 
 
 informative:
